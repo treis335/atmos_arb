@@ -1,0 +1,56 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "stable_math",
+  "friends": [],
+  "exposed_functions": [
+    {
+      "name": "calc_in_given_out",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "u128",
+        "&vector<u128>"
+      ],
+      "return": [
+        "u128"
+      ]
+    },
+    {
+      "name": "calc_out_given_in",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "u128",
+        "&vector<u128>"
+      ],
+      "return": [
+        "u128"
+      ]
+    },
+    {
+      "name": "compute_invariant",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&vector<u128>",
+        "u64"
+      ],
+      "return": [
+        "u256"
+      ]
+    }
+  ],
+  "structs": []
+}

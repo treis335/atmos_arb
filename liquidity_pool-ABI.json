@@ -1,0 +1,1749 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "liquidity_pool",
+  "friends": [
+    "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::atmos_pump"
+  ],
+  "exposed_functions": [
+    {
+      "name": "add_liquidity_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "add_liquidity_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset",
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ]
+    },
+    {
+      "name": "add_token_to_launchpad",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": []
+    },
+    {
+      "name": "admin_add_rate_limit_config",
+      "visibility": "private",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "address",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "admin_disable_rate_limit",
+      "visibility": "private",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "address"
+      ],
+      "return": []
+    },
+    {
+      "name": "admin_update_rate_limit_bps",
+      "visibility": "private",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "address",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "auto_update_pool_rewards",
+      "visibility": "public",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "can_withdraw",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "claim_pool_rewards",
+      "visibility": "public",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "address"
+      ],
+      "return": []
+    },
+    {
+      "name": "create_pool_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::fungible_asset::FungibleAsset>",
+        "u64",
+        "u64"
+      ],
+      "return": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "create_pool_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::fungible_asset::FungibleAsset>",
+        "vector<u64>",
+        "u64"
+      ],
+      "return": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "deconstruct_add_liquidity_simulate",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::AddLiquiditySimulate"
+      ],
+      "return": [
+        "u64",
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "deconstruct_liquidity_balances_simulate",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::LiquidityBalancesSimulate"
+      ],
+      "return": [
+        "address",
+        "u64",
+        "vector<0x1::string::String>",
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "deconstruct_pool_details_res",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolDetailsRes"
+      ],
+      "return": [
+        "u8",
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "vector<u64>",
+        "u64",
+        "u64",
+        "bool"
+      ]
+    },
+    {
+      "name": "deconstruct_remove_liquidity_simulate",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::RemoveLiquiditySimulate"
+      ],
+      "return": [
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "deconstruct_swap_simulate",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::SwapSimulate"
+      ],
+      "return": [
+        "u64",
+        "u64",
+        "u64",
+        "u128",
+        "u128",
+        "u64",
+        "u64",
+        "u64",
+        "u64",
+        "u64"
+      ]
+    },
+    {
+      "name": "get_lp_balances",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "address",
+        "u64",
+        "u64"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::UserPoolBalancesPagigatedRes"
+      ]
+    },
+    {
+      "name": "get_pool_asset_metadata",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+      ]
+    },
+    {
+      "name": "get_pool_by_address",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "address"
+      ],
+      "return": [
+        "0x1::option::Option<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolResponse>"
+      ]
+    },
+    {
+      "name": "get_pool_details",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolDetailsRes"
+      ]
+    },
+    {
+      "name": "get_pools",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "vector<address>"
+      ]
+    },
+    {
+      "name": "get_pools_map",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "0x1::simple_map::SimpleMap<address, 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolResponse>"
+      ]
+    },
+    {
+      "name": "get_pools_map_paged",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64"
+      ],
+      "return": [
+        "0x1::simple_map::SimpleMap<address, 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolResponse>",
+        "0x1::option::Option<u64>",
+        "0x1::option::Option<u64>"
+      ]
+    },
+    {
+      "name": "get_user_lp_balances",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "address",
+        "address"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::LiquidityBalancesSimulate"
+      ]
+    },
+    {
+      "name": "get_user_lp_balances_multi",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "address",
+        "vector<address>"
+      ],
+      "return": [
+        "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::LiquidityBalancesSimulate>"
+      ]
+    },
+    {
+      "name": "get_withdraw_limit_details",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u128",
+        "u128",
+        "u64",
+        "u64"
+      ]
+    },
+    {
+      "name": "has_role",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "address",
+        "u8"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "is_paused_pools",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "is_paused_pump",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "lp_seed_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "u64"
+      ],
+      "return": [
+        "vector<u8>"
+      ]
+    },
+    {
+      "name": "lp_seed_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "vector<u64>",
+        "u64"
+      ],
+      "return": [
+        "vector<u8>"
+      ]
+    },
+    {
+      "name": "pool_amp_factor",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "pool_assets_metadata",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+      ]
+    },
+    {
+      "name": "pool_balances",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "pool_balances_normalized",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<u128>"
+      ]
+    },
+    {
+      "name": "pool_exists",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "pool_invariant",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u256"
+      ]
+    },
+    {
+      "name": "pool_is_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "pool_is_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "pool_locked",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "pool_lp_token_metadata",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ]
+    },
+    {
+      "name": "pool_lp_token_supply",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "pool_precision_multipliers",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "pool_size",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "pool_swap_fee_bps",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "pool_type",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "u8"
+      ]
+    },
+    {
+      "name": "pool_weights",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>"
+      ],
+      "return": [
+        "vector<u64>"
+      ]
+    },
+    {
+      "name": "protocol_fee_ratio",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "remove_liquidity",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset"
+      ],
+      "return": [
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ]
+    },
+    {
+      "name": "set_pool_is_locked",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "bool"
+      ],
+      "return": []
+    },
+    {
+      "name": "set_stable_pool_amp_factor_internal",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "set_swap_fee_protocol_allocation_bps",
+      "visibility": "public",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "simulate_add_liquidity_stable_pool",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "vector<address>",
+        "vector<u64>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::AddLiquiditySimulate"
+      ]
+    },
+    {
+      "name": "simulate_add_liquidity_weighted_pool",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "vector<address>",
+        "vector<u64>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::AddLiquiditySimulate"
+      ]
+    },
+    {
+      "name": "simulate_remove_liquidity",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::RemoveLiquiditySimulate"
+      ]
+    },
+    {
+      "name": "simulate_remove_liquidity_v2",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "address",
+        "u64"
+      ],
+      "return": [
+        "vector<u64>",
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+      ]
+    },
+    {
+      "name": "simulate_remove_liquidity_with_rate_limit",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::RemoveLiquiditySimulate"
+      ]
+    },
+    {
+      "name": "simulate_swap_exact_in_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64",
+        "0x1::option::Option<address>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::SwapSimulate"
+      ]
+    },
+    {
+      "name": "simulate_swap_exact_in_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64",
+        "0x1::option::Option<address>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::SwapSimulate"
+      ]
+    },
+    {
+      "name": "simulate_swap_exact_out_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64",
+        "0x1::option::Option<address>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::SwapSimulate"
+      ]
+    },
+    {
+      "name": "simulate_swap_exact_out_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64",
+        "0x1::option::Option<address>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::SwapSimulate"
+      ]
+    },
+    {
+      "name": "stable_pool_exists",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "u64"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "swap_exact_in_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "swap_exact_in_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "swap_exact_out_stable",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "swap_exact_out_weighted",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::Pool>",
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset",
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "update_token_to_bonded",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": []
+    },
+    {
+      "name": "validate_token_status_launchpad",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "bool"
+      ]
+    },
+    {
+      "name": "weighted_pool_exists",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "vector<u64>",
+        "u64"
+      ],
+      "return": [
+        "bool"
+      ]
+    }
+  ],
+  "structs": [
+    {
+      "name": "AddLiquidityEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "amounts",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "minted_lp_token_amount",
+          "type": "u64"
+        },
+        {
+          "name": "pool_balances",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "AddLiquiditySimulate",
+      "is_native": false,
+      "abilities": [
+        "drop"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "minted_lp_token_amount",
+          "type": "u64"
+        },
+        {
+          "name": "refund_amounts",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "AmpFactorChangeEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "prev_amp_value",
+          "type": "u64"
+        },
+        {
+          "name": "new_amp_value",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "AtmosTreasuryInflowEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "asset",
+          "type": "0x1::object::Object<0x1::fungible_asset::Metadata>"
+        },
+        {
+          "name": "amount",
+          "type": "u256"
+        }
+      ]
+    },
+    {
+      "name": "DaoFeeAllocationPercentageChangeEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "prev_value",
+          "type": "u64"
+        },
+        {
+          "name": "new_value",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "DebugEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "idx_in",
+          "type": "u64"
+        },
+        {
+          "name": "idx_out",
+          "type": "u64"
+        },
+        {
+          "name": "aI",
+          "type": "u64"
+        },
+        {
+          "name": "balances",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "LaunchpadList",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "tokens",
+          "type": "0x1::smart_table::SmartTable<0x1::object::Object<0x1::fungible_asset::Metadata>, u64>"
+        }
+      ]
+    },
+    {
+      "name": "LiquidityBalancesSimulate",
+      "is_native": false,
+      "abilities": [
+        "drop"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool",
+          "type": "address"
+        },
+        {
+          "name": "lp_balance",
+          "type": "u64"
+        },
+        {
+          "name": "tokens",
+          "type": "vector<0x1::string::String>"
+        },
+        {
+          "name": "withdrawn_amounts",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "PLACEHOLDER",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "dummy_field",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "Pool",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "extend_ref",
+          "type": "0x1::object::ExtendRef"
+        },
+        {
+          "name": "assets_metadata",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "pool_type",
+          "type": "u8"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "locked",
+          "type": "bool"
+        },
+        {
+          "name": "lp_token_mint_ref",
+          "type": "0x1::fungible_asset::MintRef"
+        },
+        {
+          "name": "lp_token_transfer_ref",
+          "type": "0x1::fungible_asset::TransferRef"
+        },
+        {
+          "name": "lp_token_burn_ref",
+          "type": "0x1::fungible_asset::BurnRef"
+        }
+      ]
+    },
+    {
+      "name": "PoolCreationEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "amounts",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "minted_lp_token_amount",
+          "type": "u64"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "amp_factor",
+          "type": "u64"
+        },
+        {
+          "name": "precision_multipliers",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "pool_type",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "PoolDetailsRes",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_type",
+          "type": "u8"
+        },
+        {
+          "name": "assets_metadata",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "amp_factor",
+          "type": "u64"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "locked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PoolOperationsToggleEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "is_locked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PoolResponse",
+      "is_native": false,
+      "abilities": [
+        "copy",
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "pool_balances",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "lp_token_supply",
+          "type": "u64"
+        },
+        {
+          "name": "amp_factor",
+          "type": "u64"
+        },
+        {
+          "name": "precision_multipliers",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "pool_type",
+          "type": "u8"
+        },
+        {
+          "name": "locked",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "PoolSnapshotEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "pool_balances",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "lp_token_supply",
+          "type": "u64"
+        },
+        {
+          "name": "amp_factor",
+          "type": "u64"
+        },
+        {
+          "name": "precision_multipliers",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        },
+        {
+          "name": "pool_type",
+          "type": "u8"
+        },
+        {
+          "name": "locked",
+          "type": "bool"
+        },
+        {
+          "name": "timestamp",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "PoolStore",
+      "is_native": false,
+      "abilities": [
+        "store",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pools",
+          "type": "0x1::smart_table::SmartTable<address, 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::PoolResponse>"
+        },
+        {
+          "name": "protocol_fee_ratio",
+          "type": "u64"
+        },
+        {
+          "name": "pools_vec",
+          "type": "0x1::smart_vector::SmartVector<address>"
+        }
+      ]
+    },
+    {
+      "name": "ProtocolFeeRatioChangeEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "prev_value",
+          "type": "u64"
+        },
+        {
+          "name": "new_value",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "RateLimiterConfig",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "is_active",
+          "type": "bool"
+        },
+        {
+          "name": "current_qty",
+          "type": "u128"
+        },
+        {
+          "name": "window_max_qty",
+          "type": "u128"
+        },
+        {
+          "name": "token_supply_bps",
+          "type": "u64"
+        },
+        {
+          "name": "window_duration",
+          "type": "u64"
+        },
+        {
+          "name": "window_start",
+          "type": "u64"
+        },
+        {
+          "name": "window_end",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "RateLimiterStore",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pools_list",
+          "type": "0x1::smart_table::SmartTable<address, 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::RateLimiterConfig>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLiquidityEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "amounts",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "burned_lp_token_amount",
+          "type": "u64"
+        },
+        {
+          "name": "pool_balances",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLiquiditySimulate",
+      "is_native": false,
+      "abilities": [
+        "drop"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "withdrawn_amounts",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "RemoveLiquiditySimulateV2",
+      "is_native": false,
+      "abilities": [
+        "drop"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "withdrawn_amounts",
+          "type": "vector<u64>"
+        },
+        {
+          "name": "assets",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        }
+      ]
+    },
+    {
+      "name": "StablePool",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "amp_factor",
+          "type": "u64"
+        },
+        {
+          "name": "precision_multipliers",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "SwapEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "coins",
+          "type": "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "idx_in",
+          "type": "u64"
+        },
+        {
+          "name": "idx_out",
+          "type": "u64"
+        },
+        {
+          "name": "amount_in",
+          "type": "u64"
+        },
+        {
+          "name": "amount_out",
+          "type": "u64"
+        },
+        {
+          "name": "total_fee_amount",
+          "type": "u64"
+        },
+        {
+          "name": "protocol_fee_amount",
+          "type": "u64"
+        },
+        {
+          "name": "pool_balances",
+          "type": "vector<u64>"
+        }
+      ]
+    },
+    {
+      "name": "SwapSimulate",
+      "is_native": false,
+      "abilities": [
+        "drop"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "amount_in",
+          "type": "u64"
+        },
+        {
+          "name": "amount_in_post_fee",
+          "type": "u64"
+        },
+        {
+          "name": "amount_out",
+          "type": "u64"
+        },
+        {
+          "name": "amount_normalized_in",
+          "type": "u128"
+        },
+        {
+          "name": "amount_normalized_out",
+          "type": "u128"
+        },
+        {
+          "name": "total_fee_amount",
+          "type": "u64"
+        },
+        {
+          "name": "protocol_fee_amount",
+          "type": "u64"
+        },
+        {
+          "name": "idx_in",
+          "type": "u64"
+        },
+        {
+          "name": "idx_out",
+          "type": "u64"
+        },
+        {
+          "name": "swap_fee_bps",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "UserPoolBalancesPagigatedRes",
+      "is_native": false,
+      "abilities": [],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "user_balances",
+          "type": "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::liquidity_pool::UserPoolbalances>"
+        },
+        {
+          "name": "next_bucket_num",
+          "type": "0x1::option::Option<u64>"
+        },
+        {
+          "name": "start_idx",
+          "type": "0x1::option::Option<u64>"
+        }
+      ]
+    },
+    {
+      "name": "UserPoolbalances",
+      "is_native": false,
+      "abilities": [],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "lp_balance",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "WeightedPool",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "weights",
+          "type": "vector<u64>"
+        }
+      ]
+    }
+  ]
+}

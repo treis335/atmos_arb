@@ -1,0 +1,2531 @@
+[
+  {
+    "address": "0xcc0d5e8def956868157fcd560e0e8c2fa8013380eeab6766b69749e5eeabbb33",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xd7908e3916c2787239114d6eb634380ff60458f9ee7212e46ac0d37e673be851",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x8eae6fc4c7dbb3f9717a0ba6771a0359ca095a8ab99815e899a2b97093963416",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x3dec98a00102d46d20a097ca18d6182bc21ab4ce538e8e7bc1cb719d6f7f0446",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x1c55b8eef953dd4bc77902d636f6fc36318d2204160d7c3c8a62efe9ae823161",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x7c297c62eca02516b366557758854f155d24c7c72b3554e0f1b8abd19ac11d43",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x77076e706585f7645c722bc5d7362c0d67100431f585a997270e85f8b856d644",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x17eab8bc46b0d6da336ba4352f8b152ce61d7cf52a8023829c5339888bc746ea",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xa3408c0f66054efcc705a70249ff1c379a11351d18c309eb1529a745e357601",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xa403e2f0a298682c04f3c1c32349d80f74cd40ef23970781d4853825a3b475c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xf09510dd9a19bb2b6836f5987557ea435780797e75022916f52347e9b771563c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x638597447834276f76d46f1f87656fc171396611e5d3eac03153e04c6a2b04d1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x6de4bb27c12f4314158b92af45159f0bed514dd874b6e2608e3f873e01888ffa",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x22dd227538093734ac7e424d4aea45c7750a1b9a0ac30d8e2ec75c757ef19b4e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x788aa8874b822613e5ec035cb9e36087ea1352c907a74098df4a3b378778408f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x7c5e1ea981bcd33593707c6198cf8d1b9d52f96677f6073bbc63cd6847dfc04",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xad3d1582b38b2998c71ce145f4fd4b08fadd3a27e21b6967344b56fca038e215",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x35d43879e5938c7a9e9d62bad1777c4d84fed7bf248e9aa670e3aeca87dffd94",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb43232470d816612caf49e6fd24ff00bc330dc60eb25a5c6feb680be42c4118c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x1cc2bc27c5134ffcdd80fddcfaa1b9a05f6c03649c9927429f95fc723174c0ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x7ee970ae388c8682793595a2bb1d7e43b6f9fab255b894b7a3f4938c7fc17079",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xedab0b08bc02b756c0792e27f34f2529c968a5aedb3dc7611d178acf593ecb0d",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xe1ca9cfb0edd5e1af6750c02ce3953d6d944323256e2008c78b361da6d52dd0c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x7dac36fa7731fa4fa027876330319e40148aa5b9d340c054bbe9bae4aa556fc2",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x4274ed3b66bee46d049d6217ea005438aef6599674eeb37b77b19aa7a0a91acd",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x3533c39c8604f4485ffc322673fc1b534bac800048858a3ecda46ab51cdce2c8",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x46c51052373f497e40dedd96c156456167a09a2cfbb7c32ad986edd4cc35844c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xe4991b5ced5835ee3947613c794185fb1207876af4695a617122c6522dc35438",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xe3327bc16f41b4a2bf05362962281d14e2b42a2b4c35ed082256c9a9a8d09be4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x10bcfc5729df296a4f381c6bbe661d71d5e6c74608d8a6a850f6575275737980",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x197a570cfc11bd6bfbeb80b1933c6dfb242cad14a28c7210593d1e15cad25a2f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xf3d6ef7ce0dc95d1d292b34ba22c723cc7eb72d99365c4dcff0d7db76c45b8cf",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf11aa44964cfa8396f6519b54cb212915477cfb792c6451a5d79dc6df352e908",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb354959c567b24df04b2644d0179d9a8647960e44636ae04d7654ae074dad2c0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xa9ab03907fc7c44e37cf0b59daffbc6c4ffc5801a3d0239646e6de5d7c9f5ca0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x3840460c102bc687ce19621b6cb2222d30473259af78d6e9a45c7606da28ff39",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xbc4c25b7b01cac5c0c66c6731951a1a0ac929d8e1aa411ca622e1c944a7c5da2",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xbf847510a79937a967703310580b6e98665e3198418dcdc966007bc31b382df7",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x9fe2e451e8a565f6eddd75f57cbec8186f8701b08b9b50133c6e45259336348",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x9f5d88ae406669604c31ab67bb43cbdc9791c36e1398b702f1ac1ad6d5d37edc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x69467d6c5c2758f77e8ad57d30ac90a3bef29a648f1aaa8764111a00afd30800",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x43fdbe8d13480be956ab02ae1c06e2256bad64c784649e533f96e27c1512520e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xa65d71165bd08c221183213d080fa9f27f13a21893bf9058cfd629f289e5e48",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x96bd9092a0473cccb11d0906a182e87f97560005222c69cff2a235b99ecd5dbb",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x73f4acd4a079f10ffb3a7b628c19e9231ed09b4742d69c5706869fcd5edfa2cb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x31657ad548018cfb830285ab079c8d91eb33924e5fe541a44b40357a558434cc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x1a26dd6cdbba1b6b172ef546d23af8c62a5499ec37f16bb6b4906b97bb95c10a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x6bbbc5645a2e659120bfcd5c5452b910f830759fda3c08dbeb76ec6f45b34af9",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x2e8512e4a6e47b1ab9bbcef054e5d130b843e70c8179b3eab6c56c393c7d4117",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xe706bbac7a0c85d5c7aef228469c0608033162238cc026e76ed17a65a032f4f5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xa9fc0e405115ede41bc65d8d50560710e11066ef008572df51bedced8c705b85",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb07be6f6f59d40c0c3f8a32f7afe16f80ed4b4ae6bb4a8c6a7114a55a33d7da1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x41cfc8285b4576d37e5515013b2e6b57934e946247671620bbf5f72cb20461a0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xc23059d975e1e40de16c2300ce539682aad33259b71493678a54cced68d0f835",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xf5b42cfb4151ce90193719f1603fd3ec13d1f3b504fc53dc10bab43b463a5c0b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x1e50442263169d053da6b7bd109a36b6e8827c6d8eaff1977f451aecc0d861dc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x753028228ae61847637b0bb6aff141807f92f6402ba76164b9c3143af255b359",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x47e404475097e6b62f68475cf952b25a22dddf9bd662edaec75f3219df09f849",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x2d6583fbfbc568c74a80cb4c53343cf6429975f285170ac69b480d2dfb4fc60f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x60fb61bb8d631f94e162e82b8471a09a4a5deab699c3c1efb81a40d69ee6f66e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xe903b84a8e31f224a05e1c1596de116dae9db59c2cd603edf2a91df4feeabd2a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x2b4b4ff3d2ba5361a2ac2eae80ec6372f328be38fa72ff24f89abbf2d3805151",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xc75afcd90241e929268249b458f443fcbc4113f4e27731adb732ad3ee370872",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xc96e21b1547177854013cb8f01e242a0132425b5653a2ab569972d86d8fd38d9",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x29b053db51562928ea8a6e0e3f770879da0b025e6789463c2ad3b65753757079",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xd6be457c22634ceb52c6f2d0cd7ee6878b5aad8c838475294a32705a450e3e9d",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xef8c04e61fc3d90e6466fac1378cbade50a14ab4a0e711fdbe2f9aa9e28181af",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x58e7cc288515e49e1ca2604dca7dbc47b9f29672ae04c62698cf508bab8d42bc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xb54256bcca34778afc88734acc5a90957b78cf7db366259eb5e5eb064fca6c56",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x23fc5e62d888f75c4fda3c5c3b67cf0552cdbe5227aacfd522a2dca1fae2620",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7a0f856397582bc65dca11134c9711572612b427837f9ce87cb0bad38a401339",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x47291ffd4a0cf7a3905c5166ef8404257c17b39f2ae781f00c27c5382bd53b7a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf11aa44964cfa8396f6519b54cb212915477cfb792c6451a5d79dc6df352e908",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x546625ffba440eb9243cc87ad091789a914ff14f032358ab17e4ec7c020ab238",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x4a1570604fdebbcd3b3b81a17b45ed61d34bcb0b8d49cc2f8be0a25265e92fb1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xbac4c438e98e25e600b8a924d56b8f4fb0fc67a013242b8a803faf750e489e15",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xf6efe4c8a34ffe6d4e81bd4d1118716c25f7e396764ede1654b115183bb227c1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x299be73570b0108c94ec2db5fc53c1e00eb3245a5b9626505296366489dffe3d",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xbd3864cdeef97f080d05013021e3079ce4ee3b32a78a1168d4a9a93b643d970a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7a0f856397582bc65dca11134c9711572612b427837f9ce87cb0bad38a401339",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x401c134db7b1d185b4ebc3b541f21cb8eeb79170bf0f5874877601273f86de3a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xbefd58173e43bfcd599bbf4a4010afd769abea3fc6cc0cb3808ba999299c3e40",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xd44733fbfdd8ef67563ca07ff792dce1de131781f9f83d1b28a272c604f2e50e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x1b53d0bfc0b7e179369a3b453faaf7851c987b4f0010405926fd822a0480baf1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf11aa44964cfa8396f6519b54cb212915477cfb792c6451a5d79dc6df352e908",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x9a2c9bdfff81d4d54c11f692828f4e43be2cc054a05e701f2b94e386e64699bc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x35f9762fbbafe53ebff07411cb426e4bc1f6c96ad654a84856a49818e806c0c5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x4fb040f51d5b199a89923e5be341464f67bc8269115827c428d089cce9509fe6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x6914bbe4d7a88bbbc534b94a7f9156d22df63c8dc86b0a7f4c1ebe0e349f6038",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x92a0beff0e0200d143a20405165fdecd9e93d704cba16e9e8d28097efb35c544",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x5235d477677a6c5f18f98250fa3f27d3ca81885d2ed9affd4049973379d213d6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x99f84c4fda663bf3baf3a1b0980386ca084c3e9340a4d3f8713cd54ec85f4cea",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x26cb8c03aba0fa1b84529a4f03d17f6a490187a8d698f970b68d17311e23f7f0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xb72e2b6513f7f8189f3f1b8310746f250b3f9f4ad5da4124a2cff9378a1723f3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x99f84c4fda663bf3baf3a1b0980386ca084c3e9340a4d3f8713cd54ec85f4cea",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x65cd375d337d9a2731617551c3ee460858217d7a8f15d98dd0794d975d9baea",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x33db4e2acc3440029f8e69c9da18e3f6280d4ca0ab9f792da5d38827257f50e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x927e5d470d8bb2054d67e2ffad2952075a7b83cd216ac558564e9c0fe471af4e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc6d851100ca119920cf0b99737e4c4410d1cf6228d102b86623f2e7264c8a3a8",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xc247308a14a3263933323879631f8c305cad0ebc37ba8e7374ffdeddeb03ede5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9eb5143f5d5e5f2aa02ffa560cdd98a32eb8d8522883a064d1291d8bff6789a7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xf800b5ec33052592ea57844861d0a17f8bf7b729d21126fec9ec32d71518cf40",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9eb5143f5d5e5f2aa02ffa560cdd98a32eb8d8522883a064d1291d8bff6789a7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xecd0eeda58e234e1d924d91106585eab16cec07fbcfec3a1843f41ac8b697cf0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf4fc8a0ffac72c0d1df07d192fb5806bbccd799c879781404b55e7688eb6b61d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x624bf7f8d68227d67d7b5ee6031089a3617ed757e9225a8789a9c06ff5e17b71",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xef8f4c027003c8667405164037f70252c6f06d6248d9d483f7cb976401a0af45",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xfc45ffed7a0f49a88ddb8e43d804b7f8540e82366e968ba2de2dcee95060e997",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7a0f856397582bc65dca11134c9711572612b427837f9ce87cb0bad38a401339",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x66c6f476f552f92cf32ef331b1908e5b7379d8b96f2e6f1d2ba8c17e19667a70",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf4fc8a0ffac72c0d1df07d192fb5806bbccd799c879781404b55e7688eb6b61d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xda34ad510d760324b518d3ba10cd14f50268c9aee0d5bb072cbfe0d9b307b028",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xc7f2258579e12c8a1decaa105f5de3cae1224b397483d00cd1901a2794aa9f37",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x73f4acd4a079f10ffb3a7b628c19e9231ed09b4742d69c5706869fcd5edfa2cb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x2cfe460648c3851fb4f8df32d6d307d09e8a1c55cb065e7709d3bfd6052ecbf0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb8be14fb4611634aeb27c4e4f551940898f9399993b5aaacfc2d8571fa061363",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x1a290d95d7d2f934bd76f58fa5c3d29612fab9aa9bba00283e67abc26543b00a",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xcd46a47329dc88a9598b89bbd1c18356e633a99e0d16bbc427fc645bb1646528",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x76c476e16e75208c08345c6bee7772de3b04b0762aacfa66bf06090c3b9a096d",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x1a290d95d7d2f934bd76f58fa5c3d29612fab9aa9bba00283e67abc26543b00a",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x5841982db74b0fc31befdf497ac733fdf99516f51ab8e65101fe515078336093",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x927e5d470d8bb2054d67e2ffad2952075a7b83cd216ac558564e9c0fe471af4e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xa939acfd0992cf6cf191c612230ff4d199a0d0bae8fc0da182313e1cbf9c18d3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x32948052da43a63613b12bdbfe325745750c059f510ae45df37086266d073cdb",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x76e76e427ef3e806be8c33eb282aba017ada8b64471a715418385b721233776b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x870900b6557795114cb154a747400eb5a683d1cc6c9a1f5a0af318f7cf57bf67",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xd491bf901fc5f15bbf83bf7e9536013432733d89641197355af0a32146af4d8",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x60e3523615980935be9a8447d3cdb39085027d1da2b882491dd79c6a93bdadb3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x870900b6557795114cb154a747400eb5a683d1cc6c9a1f5a0af318f7cf57bf67",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x320e7815e92af5376d9a2aa79002f500c0e18a81edda279df91f719fec7dd85a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xbb581fc5baf635bbb5ff27f2a6c83a55ed0e684289d8bbf42c184609055140c0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xb135c1e82a00cc88ea160ab955cee48a7422a76c880710502bf6d9821867890",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x896b5a7c61ab5de72bc79b77eb8c6531a3632b6363558eeb9830a6672d026309",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x9fe0d8e49c588e4d376479d502583af888ff59925ffe13bab771dc41dc7bff54",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x3d6f76dda144915aa7370bb67e179d49024e03c3a3d4d044a5cd563b560e8b57",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x227626e7addfd874dcf68e479a8f803e9719596a9bdd563cf97e8f9b33feaf09",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x77076e706585f7645c722bc5d7362c0d67100431f585a997270e85f8b856d644",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x949f7542e6112d656194c21b56e1c36e9f6bc87d57da673667542e1baa28fa21",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xa0040c97616048b6e0409e048d5f3cb9cfa0caa91dce0505390ac7ec8a132a86",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xc3b2811077b309e2d6e7014e4b427d0e37377b9a86592d95ee97471cdb8e59af",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xaf5c3f6dc25dfffe53c5d6be1cee66bac14678e80d80d959c5075dcc525cd39d",
+    "token0Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x780c22eac4feaef14a57c0b39f4f9e0464043bdc9debe09d746b43f5fff91362",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa0040c97616048b6e0409e048d5f3cb9cfa0caa91dce0505390ac7ec8a132a86",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x1760680420c3f65395335a3e07ecdcc722c8bf0b5b77af577a852e56f15e2822",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xacdc9106c5595a6d23158d39ba57f33ee37dc4d3523729d83e3f0d232d3d6851",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5121968fdbc1348c475cd89f273819fabdd3fef03dc9029efd1911c54cd2ad79",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9eb5143f5d5e5f2aa02ffa560cdd98a32eb8d8522883a064d1291d8bff6789a7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5bf50161a69779556081887daf0eea6d03f4778944d53f87555f522fc249047a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x2a0f3e6fb5d0f25c0d75cc4ffb93ace26757939fd4aa497c7f1dbaff7e3c6358",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x7577148ba14145836cf8b9aedf8b0cd0271d40d92e1e715a87011f74e42b5e6b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x1162d2828d28a61cee12f01651ec9de424c28fa8adc45fc8d74ba050e65820d7",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xed521e149eed0d354579529cea6dab4da3cb12e9c746bfbbd36e57cc792d89ed",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xe2a27ef4c237396473e6ad03f1e1f88a5a0a34e7c6b5bf93eb2d777b1999d655",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb255b3bd7e04771feb89db424ab4814fd85d70b8a03230bff9998e73e161f82",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x270f96f260c6f23b8c6c7b585a6794e12806a051b98b2c2c69b9da96f29333dd",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xac83e2d3b09a65236468da589b7b0a703ee06441fa1721af7d8dcd49610be799",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x1475f268b9e01cf42bbaa4f79e53f33a67128fcf180f528a9be517ab45e7c1f6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x99f84c4fda663bf3baf3a1b0980386ca084c3e9340a4d3f8713cd54ec85f4cea",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xf3d2ba569987e103046c4f2204698539f2f92b0b1d0cfb2f594e3c30316ffd68",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xbd6ebfcbda50cbb6887857d483c17f12611214cd70728ac9673d54f39711d837",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x9a0020008d5122dce21b3bf69aff7bd8bfa6a1d7e4af48cc8942bab7d0b1dca3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xecad17550211877f14947cc351ee2956a3481c4d5dfb100ad552f6bd8f2f1208",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xa428bfd0ace896fbcae2875aa7fd8c454a60ad48b2c7943f17c34103fa817601",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x78e5bcc780a75e10d1323a5008cc54e47da2598fcb605309910ee78d2d1d95d5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x4c7a3828c0da5e49e363b955b30c25a8944f36f27f637fd24a457f13eebefef2",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x83b6ca774dd0fc4fbb639a4b8c789e5712396597afa10d5b9ec8d3fff970c4e6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x6770a751bcabf8d1192631541b83a0e60912a709946bd8a33009c75f6c4d9935",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x1fed3f9468f40a8a2522dc9c1335a550e06600d4532cd69e84282f258155162f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xcdbe472d792154626dccb0d28cbedf1ab26a2336325702489e7b981babded8f7",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x55e2cb2bffda99450fbf8f72affc97ea85f5806d9d38c6bf3c16c6c586d31b36",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x1c93b3b3cd59f391b349ce22eb109dc11856b690a56621e7cb1051028ef5d5e1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x7e41c819398041bbb00e9b9c82e8fb2dd4f3df329c941bb33dd6dce4352c7044",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x3f2d2005ca1babc2cc4a84a87ade3d794c95d91677742a83fd5e87de4e140a52",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x797479cc3a1e7d231040ed5e740171f4ac9defebb33f5c40837845262cb9499c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x20961b33e26e02c4b04963abececa6f5cefaaa67c3bbf62f1cd4cb50e0721859",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x53a74aa73b90ba911d45004c1e8e357f849d3030e3c1d37e240bdf535a6d1f34",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x7838eff0a42c5a110c8fd99209ed75bc5a8d9234622d8e9ab11c4090d1a8c8a4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x290a77b609e6cfa436d5300ff46ba0e3f72f9f4ba4606414122524d0614a1ce9",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xb1561dc695f9fe0965b623b84fb511f893e766c92e8937d913b78d7f51f8658b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xc6d4796b36dfb143fba194891948900264e42ebd155c6e72fdde0f49bb7b7633",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xa9a55e43e834f77d0c557a864054d8b2dbf4ed5a1785dc399e286e38bba0d9a4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x3abbb80f6fac86648d73b870da3c788b0dac3e119d5e18a8a54a2cdc8d651daf",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xc2dfdda9adea7ec68799a81a22df100e23a71421ec9dc6612c5dcff0686ca767",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x615de137da2044b1daa2e9001db62516ab9533c3d6c5150c0aa934eb59e18d0f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x7eb002d0828d46cbd7284f645c32637a0c08c1f24dd747c417db12b090e07341",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xad335af35686239fded1de8619b030b64a0c3af2d170445a1dcd7010a63b80e6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x5202cd475e1f068822716fdfdd563b660381ab7188721df9236acc1065e027f8",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x5a1c3e7e77715ae93b8401c4863d0831dd78666d0cecbbac3851d0b75ac66ba3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xf6e062f98c908527ea30ba99d09719f33ea200f62b134e5579ac485fa14232a3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xea88a74091384f8ac444aa189561896476bffe86cc465cf4d5d07877445cb6c6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5f0037d30f0c552c3a4a3169ad7fd0ab1eea02d572450dfde8750b5aa43209b4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xde3bea1ea2226ebd14000d15fd2fe1814e08fcb6529cee956cc891b799b007f",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xa2050784b5ae205f74e4a93eb6223019df3dc9adb696419c9b7f84a322839921",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xa0efd64ee2558b935a532d9cfe7da45eb5fc2a9fffe348a14c10039fdd1b90d5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x6256656ace01e6f1de10e5cc28fb772ca2e129d1c984802190e788024757d090",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x6cab37dd561c1c5bc3698dd35ad28704ed987f6d4694e2aee107d4331751aa5c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x2ba40bb5ce01bea995720a614e78ca770d4becd58c048f180c348bd8be4dce53",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xf40ee4b831469fbdc06b2852df5be47823d014b4209582791128bbfaec12dd01",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x807b1cd3421ec2062d0d40f99471653f1becf8d6e5edd41e0401bfa7a72bfbed",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa96cc508912f1a2f1c254038ea9ffd54707b04cf07d64280fc0081202fb84648",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xbbe75a79063274e61aed9b29910d79fbe7a1b1a2ab319f2f32bd95ef0703753b",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x730891f137bc57b17414771e29ebc4c29a99c581a50f1a0e4c2bfd8bd641875f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xf38119d1dd349e2683b687b184e7440e09182fd6950d6f6fc3802164a5ed1271",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xd21f42c4f6e0141cca6bb80f8ab26930e74461ffaead1fa58970fb872c3608f3",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xaef0f5628cd9a96b5cff583f5a786a05323f749ee7fda8411f0b41e6a65e46a0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xcfb53d5487e88e953ce40d64e062fa8d9ecb4a6ca4b9debc565ff5741930717b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa0040c97616048b6e0409e048d5f3cb9cfa0caa91dce0505390ac7ec8a132a86",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x7964630fa643dbd8b430a8e54c0e81078b29bd486816820c1fbbb4a995af8e79",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x2a983f369df9ec3c5c76e429435e0ed58bdd0a1271ea70bf9f0fdde07787ae15",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x17315a4d9344f9ffba7fa237b895cddd7ce829b5f9d613ca987941c2b48bdbce",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xf7dd3985d690f027fce7ebba019c56a45318d866bddb9efb77d29d9db210c83",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x829aa35bc1cfe0d4ef40cc7811f50b351b0322e82e294e4ddb93a24932233ae9",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xe493e300371a7f1255d4cc0020cdba5eaa041bea10890ad79ae839adef3a83aa",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xedae3361357d58812e7520f26d857e8e0e0c1efa461ca8c5a680e47c55cd8431",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb1a320308af70e92297f8bdb6d7d627aa546a9eb1ecb6b1f3ab91dc62b4db79f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x82ed1f483b5fc4ad105cef5330e480136d58156c30dc70cd2b9c342981997cee",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x41867a21aebe8154b58e5246353d749f9de62cb44f88affa1619cce2ecb7287",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xb304956342f7e23cd552f25082ad248b0c0698aa5113f4ca6f2776940460e00f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x11b1feffd4fc1ec518166538349debc7285a27f92f90e0244b4c05f59e9bf90e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x76bded69dd11662424d72ae0a455bf0ee2034c4c46e5eb5a43d77108f31baa37",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x66d87e6a273c45bae8f79ac0e6c7393d4aae01c82068a65a8bd35028123146b2",
+    "token0Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x2b877ab653b0b23cd6ef542547bb7417391f245c55436dec6f90a5538acb100d",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x620d9cf1ce60726650f8b03e080bbbef04f3bc58ff11db07388282bdbc4fd227",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xe1ee4976a04141e9d7bb9ca64a5e578f5e12f985d41a8dfe8a0c7ad0dd66ea8a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x27d9c24b95b395c8cc2de619b83baa6ebf61983aa6d73fad699820d72b2fc2c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x9581a58fe3757a9a6a4b3b188d79c477fa884c0492b920a8f4c09484c3321890",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcd8c3998d58cb9818fd4f6892b9d04c9759aa4d378b9f5d4ab6ffe27b956756c",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xdb8bfe5952458cca9bf709ac92c35ea47f6bac74cbf17bd7a2528005573cde7a",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xceff14089bde0d4f512dcd3b6f3df6794346c58115b8d97e043f92ff08cd1fca",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x3847f1fba02924007cabf5020bd9e4654e28dff0de354c12efb760aebea797d8",
+    "token0Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x35981f390ac0d7c089c14b156ec0f53c4fe74e0c3342b590110b325c580e7388",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x20e0399904443a2dd594a2badb4a240d8485ef1da6cd44f6d01d052efb59417f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xad3d1582b38b2998c71ce145f4fd4b08fadd3a27e21b6967344b56fca038e215",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xec942ac2ecdc2ae96ba40d701987914adba4e802d8297f2649addb8d5786c711",
+    "token0Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x7ddfbd357e267f210763cd7185ff9ce40fdb26ea131bebf545a4ddf8f2b1e2c3",
+    "token0Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xe8963d43bb9adb51421653de749c7c4aa8477a7a06adaddd94aa0beef3d03f0f",
+    "token0Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xdbeba76e743cafbb08e3da5ab2a0b33f5735ea391aa8ad953b4673188b7e443f",
+    "token0Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xd1b5b06784c429dc1b723589efc63dd34bee51476cd4816e81c58164e5032692",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x4dcde7fee7fa38bef438155c549acf5e99d4d4a977d3c98512964979a007023b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x8490fc8106d42326118b5f10033aa713a449acb6c9c16ffa5e3a91ca54d95776",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe7cca15eca75dcbf2330ae677b51d7ce58efc1c06102f5693d2cb3465f768fb6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x1a0f8b18046be8904c42bc0150671acf6a0417de471fe17667291ab288ef1c29",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x9ffbff160e048e16ed4b9fed27c0b004bfc6b163373793b7f1c4d63b237fe85f",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x26d16dde9120036937734999370aa43a23d9e63b677d916cee1495d7abcef331",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x96771bfadf83c52aba9a4dba83077a571812466df127122d9bb7867738620ab2",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xfec06e91a1ba74038ec72ec926655a65684881d4a87bc691608454260412544e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5934abf640dbf713834f9f16aba72c85d862587c8ca64f2ae00be0bfa407613e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x166f648422165151fa1bd48124bb4ccce8f6c7932728a633d43bffacf30c895",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x4e68b7889ecc3bf63057dbfa6a9a16633a7f4e4502784b8bcb6f12dbdd7ca27f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x70760d5b570a4d7261f948bcc0560d06b91e7e7af69e8d5f845f191855ec26bb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc081cbd6272feee41e2aa6fed452aac2332b102cdc1904820b82afd68e3fa3c2",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x24deb5afeb93ff140fac344ceaee448fb6f5277a464f6c520dd7788e3ec39337",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x2bbdf448885fb99fbde61a2d84dc4a28824fdf658ab4016c0af39f7072945dbd",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xce3905ef7236ca33d8083e63a5ad5a218355c6c5dec247cf1c8b500494f8d0a4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x53335614050129fe9a3706256e59e38054fefc2f8c1b02f223ac95ccd30e5846",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x485c839613f2f55d686c8d655f38fa23195bab9f5fa7f737668acbfd2773aa75",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf8ccddc70c8c14e6be77413ca8aac6b9c838da1d2aa1901d052f515cef4c206",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x56a5324ebc6ba5fb3d118329d140f993320fa7836f1e6a84e9f09212a780892c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xb6893b9120e96cd3a482185bdaa229b8ad85e0f6a0b01ac0292ab48ea5061b51",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x3572d1a818fb8eba39fb4f77b313581c77b24cada7b9d15cb0c54c2eb7483f7e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x3ef78314cd6720794d2c63e328611ccea41d8d484ae6f22ff453c935901f27b8",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb364044ae268b711da93abe55ac1635246a1e9b3cb37df4ce021ed0fe40b165e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x3953d4ec3b18208d90fea30d7059804910e477635c55750a42b8265f9f996960",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x73f4acd4a079f10ffb3a7b628c19e9231ed09b4742d69c5706869fcd5edfa2cb",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x8d6500d8f24b11b12c54b3dcde140825881ed18fdda66cb5b9a2f46c7a9a936f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcf8c5fefae3717b488df10f2a6f7f9deb5a016c7b71fafc150234ce1d1a717e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xb987511b73c1756763e0e8750c1d278e38a82fdfbdcc8ad8bd2695befda25e10",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xaeec90cb7cbf2662cf3ac538c9ebf5237f3e87b7a8bf8b5cfb368af565257914",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x11188bb79cd956ab6b8ddff06d64f479358b59ddbd2058a41b447cdf21c17ab0",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x715c5a6b88c1652223ab46c086e860a8b4a0fdde5ec473d466bdee34afee18c7",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xa3daf1288a10930ad7eb815530472d4621968f9c0bd3d7613f9a70eb46495470",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0x9ffbff160e048e16ed4b9fed27c0b004bfc6b163373793b7f1c4d63b237fe85f",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x6757b0b3a96f7dbd9f0fd762077fcaf855b023fec8636f4bc3f4ebc8b49c481e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x7328b09196537fba1c7f4a65cd09e83e027e15e6af7f7d89075aa6cfad8c98ba",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x6c0f967fee74918203a34c2b789676dfdb743c533466cdaa2f542b15e20be6fc",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x8ecdafe33d0c0cf8db11b21acc2d958fcaff5c22adf99ccf591fe98637218171",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b9c7c8c7563d1f7a62b487c1d0f5ee2148b151fc25a68cf1a23b4e7700cb5a5",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x5878c2cb0f84910c560a9528190a8279c3d575e3eb6cb894a6e4d1a20117a675",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc356b5e9a96aa110c5f12eb1e27f0b7fb96fa1263077bf69b1d51e60071a95cb",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x1cc2bc27c5134ffcdd80fddcfaa1b9a05f6c03649c9927429f95fc723174c0ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x97381f58500cce91e55c3ce39884bb7388c0c42501e16459e95dfa4f14802314",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x8e3ff09152a6959ddf07017a781166c52f6ef882a8907034aec15abb51470685",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xbb2d046ecc6b84f3cf9da565c92971ed35146c5b6185f2ebda2d4420a0c8e64",
+    "token0Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x2ee4829670e9c02c6ce407a375011a0bbbed85fde4d8d9fe77f6eb55cfc4f481",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x1cc2bc27c5134ffcdd80fddcfaa1b9a05f6c03649c9927429f95fc723174c0ae",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x7c32643f9dd4468d60e6aae954963c13d89599e56fc134b6eb87e9be1dc16b4f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xceff14089bde0d4f512dcd3b6f3df6794346c58115b8d97e043f92ff08cd1fca",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x8301a63cdc70caeb60445cf9081e505ca144995f9874730844697729ba560db4",
+    "token0Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xe530f5a6fa493328615574088227661be69cee262912c6cfc9d16510cd63640e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xcef22ecc2e7b480f38000d6e78e3b0e6f4de12ea190e0893a9adbcc4599c06a0",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xeee54ed595bed0ce5a86a3497c749b129bbb135d597f1915400fee9f8cac2e4",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xceff14089bde0d4f512dcd3b6f3df6794346c58115b8d97e043f92ff08cd1fca",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x9ad3c83c9f4ed2c4fe421b544b845d0be99dce4e11e5ad70b724cfd6139da2c5",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xaff1eb7f3b0f35ec1cce37a63cbd0a8beccf12824083f199352286e20f69953b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x492426412135ce55b9c0e3389cbb62569e7192cd5a15963bf00c96cd9d1c578d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5010e58d232d969de09c9c52f92e64b24a6870fb6ac85917eead8cfd3e8e2f36",
+    "token0Type": "0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x314f13a1ecbafe4723e1924823066a1e6d0f48109cbfe27410001a8425b26cf1",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xa0040c97616048b6e0409e048d5f3cb9cfa0caa91dce0505390ac7ec8a132a86",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x9521ea7323eb620ffe7f83236830863eb8973411ee235254f4a0c2043239401b",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xa0040c97616048b6e0409e048d5f3cb9cfa0caa91dce0505390ac7ec8a132a86",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xd7d1b51daf8cfbb21bb97532f77408a9738db1b1c30f58b452d1e987c03b5944",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe8e41d96f7339899f612fb04c1fd9fa09016b1bc356512f49cf8ba6d7c867148",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x56862337c2524869cfdd9fed7dde6255f3bd1a9b48ce9bd63ae62644c24aab3f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x58e8c578b92646a31ea4a5bd1f5985e03b0ec5cfcc2c382310cdd527ce28b74",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xe53c911559a7c37186d74c4c9b9582910b4cf1be69f1b0fa45cfd4edf8cc1285",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xcf19199dc02b7e20460fe9e7139bc46f7044cdbcf6f7123130d9e14810b42fcb",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x42ecf580ff5c02dd10e82a547587ae63daef4c85f065739af3dc78249dc35a78",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x37c3925ab9bd9d55ce9b3014a2d846ac7c538d54ca259f7a3c50ed652323d467",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xe56d5679818606a446eb72b12e6b38a9c0eb686c9015c08d420531b5bf0d8b6f",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x13ab415bbbc56247affd1b76a24c936f94fec8cb8f3713ba6f8fb5d151ee40ae",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xf3c3d86cd5a8eedc1cf98bc3646d0b2966b0894d64c02f35619eebbe6d6788fa",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xceff14089bde0d4f512dcd3b6f3df6794346c58115b8d97e043f92ff08cd1fca",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xade9e60f98a59657bacdd4675ce4251d6b1df549ee3201034db389ac8b16977c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xa046a7b0a016c5df22e08605d3707d26422e06f56506dde928a3261fd93b692c",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x1c97dcb670222309f71de9ba17934e0ff5188720db88eea8c8da256eb5833d2a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x929276d267804f5bba57f1fb03b16be0926bbaebd4bfbb6eaf4d63ee53dae325",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xa2734837f60bc2083d26dc85736a55d1b99a9eaa8ca279d24cbe3d570ef35ce1",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x7c860861da6225a8da88c201655201b497cfd3e39e57141fc4e30c3fc9e90454",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x9415abf4eb589255e5c9cd2e6bba386382dea7f41a312ce911f44beca20dbcee",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x6c6e0ae4805af70870df73689391405048724f9484600ba0e24c45cea4da822e",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0x1e5b1254ab5324c7bacade8163921d6bd27a6b726956ff40f40db865156d8ac0",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0x3fa5b06dcc15269c65519a40eeb3b382d1408ed6721cbffe4eb7a88a4ce6abe9",
+    "token0Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc5edc9e4d508a18fac3c0758d4d24460088bae4453980f44f1ec757e0bf9e782",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x73f752a422144c748096115d650306341f1c2be24136b920eb995ca72c44cbd1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x3828de5a0d244f755b2cd3a18f66aa5d5329647d3f78fbe8a96a3289d528664f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x928b49266aa4645250be8dc89060f50b1d7e5612e9f20477f025a6103720052",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x66b80fe827b7f03955c9858389be1bce41097f513e9617447e0b91f81be079a6",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x74b2bb134c271773f31c2a203a3f4bc1507971a24cf3d74ad14883e00f86a230",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x7f947126d35d95f9b691312487806e4c5a2f85c989e4a82ee00ed6393628404e",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x506a3656b9ab2246e8f3082e954e313b91b3be8055597a10ac8b4847d3737a67",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x8fd1550a61055c1406e04d1a0ddf7049d00c889b59f6823f21ca7d842e1eaf3c",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x617f96c0f3a51e1fb082e7e4c476f61afa9644daf0bea886f6202c8a4d8e9aa",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb4e1dc6921fc96c9509929b1b6fc4948974fbb465d5cafa06ce60b55b879ad9",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x41f23c49f644315dc9f1bc56b4b7e15699997792a51e7d1a7e600e8bc9b7f605",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf04784a6bff37a4f2618cacac4ac71f351095903cdb640758db2113f38912bf",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xa9eabebc769ddb0a3068bc196c4f0cb45285ec34543b6662ce2945ce8fa9167a",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x111409161c428e6a75e5f218f2e58163cab875b7661ab33e3635fca663c0870b",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x57055a920e8fb051b1327ff9b65a4b324a7ccbc478d98567c0c8d56069c80ee3",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0x34a7f27c52b812f7f18aef98d56dba22f33b0b2e7feded3a971dafa08aa5fdc0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xb364044ae268b711da93abe55ac1635246a1e9b3cb37df4ce021ed0fe40b165e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "5"
+  },
+  {
+    "address": "0xa8e4a891cd42a7ee531958b1ea55773fcc5b587cb50504584f5bd9c98d098f85",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4c8bef4753c4fd562a8d957f148625dc60101ea6584c6bc67051f303dfd8ca7e",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xf2761695d693ccf06327eb70a6d7dd9068d5f68976314649879a423eb6aa572a",
+    "token0Type": "0x492426412135ce55b9c0e3389cbb62569e7192cd5a15963bf00c96cd9d1c578d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xbc279692ecea9d38ecacc28776791007d8ba7d5e5645cde2469b4798efd0a341",
+    "token0Type": "0x166f648422165151fa1bd48124bb4ccce8f6c7932728a633d43bffacf30c895",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x1a9fab3525a3f65560ec903efb2aae7ad2c34928410f0aec0e87c692b359941f",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x335e4152207b86fba8cf1eadddc8d9f0804f88b7d66d68bda066be0aecf8b6d8",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc0f77094eb1cf9b4849f79015616ecb5b823a886fc16e0f9b80d7f21256bc326",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xae2684197f513b6f07fee7ad08cf49ffeaaa037f05795be3589d60d3d32a2587",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x4d89ecadaa9c875177fd8042f34a68f9611b5a03b6a27ddc81cdaa5e826f8709",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x36a51ff5e4a536a5c885b758249092dea44e22a3bf2cf111273b6d372c48e408",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x9d4911184356ee55ae798e641df3264e111f1cae22ac594b56a470cf3466aeb9",
+    "token0Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x66678915f0dec19c105feed34dfcdea9db854527d50aecb32b30b11ab0608d21",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x3bcc1d5d501969b70b57eccb09dbe98a1289590e6ca237a8dbdb715d13e0f225",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xac7b695e102ff56b36aeb882502b96bc948a00327db6985e525ea3534e9b7b5a",
+    "token0Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xf7839a4341eae44c19b026d028dc3e0de295ad4678a32e3d0aef35e9fc5f7c12",
+    "token0Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "token1Type": "0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xbb485053fee4a4736e450058b1c157cc5c8a497bc7187f95b5b09935cfbed2b",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xa101dd55fd41075dc42084dd00b956233dbf5b30c97bca0cb8ea0cd2e9543a82",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x5b7ce5d502afb68528ed96641bcb5629f865fe4c08612f4ab56a57aba2241bb0",
+    "token0Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xfe74afed30a24414feea0ab12fc62d3c4dbce7ce71782b169657ebadddf09b74",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x546eb6ee8df19a41064505edcf3c1c5682525c70032e4f9efdf0a0c3af5be861",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "30"
+  },
+  {
+    "address": "0xdaeb11936fa05b5266d8f45aefab2836c005479b8c79f40a762ce296c3a5c488",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0xaf5c263aa7ad5351c26804d6e7aa32fbfabd45ff08e2578c717b33d1b57c4daf",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x3f32b2769aab074350b443edb2dee9f7deb7ca4f9596baec36dc9b13e9086cad",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xbc8d1fb1ea5f22dd931935cbdcb128bbb205e567a6b5225fe6994f8bafc8702a",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "1"
+  },
+  {
+    "address": "0x7f6da57028342f087693feb7c5876cfc47586b9bcb11ff9935e75dfddfd639e9",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0xf9899d734f2b565eedc604672d4d2ff6e4994ba9ad6454d41399089e189fd0d1",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0xc5bf9421a655642e3a8f276700551c47e75f59e1ba2b8ec18b8fa0f31562b5dc",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x64d89d4c98cd3ea87f388f563bcac383edfaf85607a1ddd84a810011e6e2e9e6",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "stable",
+    "swapFeeBps": "10"
+  },
+  {
+    "address": "0xe33cca1bdbb7028b6440c7a7f281b081b39fcf13d1f8e1d8a398fc9c4e49a0d0",
+    "token0Type": "0x1::supra_coin::SupraCoin",
+    "token1Type": "0x160af172e715ba8440e094b64c1957854bfea569c67f8d9f1e71f8ae6d95108c",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x80b9d790e3b7938d031fa542d086cfa2628bfbe4d6041690900674aceefe81d7",
+    "token0Type": "0x160af172e715ba8440e094b64c1957854bfea569c67f8d9f1e71f8ae6d95108c",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  },
+  {
+    "address": "0x4652c8030484abe5f94a086df31e493718f1ea5bfb1e623189624daa1f2c4b9a",
+    "token0Type": "0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d",
+    "token1Type": "0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281",
+    "decimals0": 8,
+    "decimals1": 8,
+    "poolType": "weighted",
+    "swapFeeBps": "100"
+  }
+]

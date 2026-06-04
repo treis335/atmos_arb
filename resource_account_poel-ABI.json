@@ -1,0 +1,47 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "resource_account_poel",
+  "friends": [
+    "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::poel_reward_manager"
+  ],
+  "exposed_functions": [
+    {
+      "name": "get_address",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "address"
+      ]
+    },
+    {
+      "name": "get_signer",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [],
+      "return": [
+        "signer"
+      ]
+    }
+  ],
+  "structs": [
+    {
+      "name": "SignerCapabilityStore",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "signer_capability",
+          "type": "0x1::account::SignerCapability"
+        }
+      ]
+    }
+  ]
+}

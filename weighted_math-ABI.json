@@ -1,0 +1,135 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "weighted_math",
+  "friends": [],
+  "exposed_functions": [
+    {
+      "name": "calc_in_given_out",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "&vector<u64>",
+        "&vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "calc_in_given_out_weights_u64",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "&vector<u64>",
+        "&vector<u64>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "calc_out_given_in",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "&vector<u64>",
+        "&vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "calc_out_given_in_weights_u64",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64",
+        "&vector<u64>",
+        "&vector<u64>"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "compute_asset_amount_to_return",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "u64",
+        "u64",
+        "u64"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "compute_invariant",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&vector<u64>",
+        "&vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+      ]
+    },
+    {
+      "name": "compute_invariant_weights_u64",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&vector<u64>",
+        "&vector<u64>"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+      ]
+    },
+    {
+      "name": "compute_pool_tokens_issued",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&vector<u64>",
+        "&vector<u64>",
+        "u64"
+      ],
+      "return": [
+        "u64",
+        "vector<u64>"
+      ]
+    }
+  ],
+  "structs": []
+}

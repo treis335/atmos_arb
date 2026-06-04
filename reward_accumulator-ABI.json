@@ -1,0 +1,334 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "reward_accumulator",
+  "friends": [
+    "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::poel_reward_manager"
+  ],
+  "exposed_functions": [
+    {
+      "name": "calculate_pending_rewards",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "get_claimable_rewards",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator",
+        "u64"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "get_pool_info",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator"
+      ],
+      "return": [
+        "u128",
+        "u64",
+        "u64",
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+      ]
+    },
+    {
+      "name": "get_user_info",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator"
+      ],
+      "return": [
+        "u64",
+        "u64",
+        "u64",
+        "u64"
+      ]
+    },
+    {
+      "name": "get_user_last_value_per_share",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+      ]
+    },
+    {
+      "name": "initialize_pool_rewards",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "u64",
+        "u64",
+        "u128",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "mark_rewards_claimed",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "new_pool_accumulator",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "address"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator"
+      ]
+    },
+    {
+      "name": "new_user_accumulator",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "address"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator"
+      ]
+    },
+    {
+      "name": "process_user_claim",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator",
+        "u64"
+      ],
+      "return": [
+        "u64"
+      ]
+    },
+    {
+      "name": "update_pool_poel_rewards",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "u64",
+        "u64",
+        "u64",
+        "u64",
+        "u64",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "update_pool_withdrawn_rewards",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "update_user_position_with_timestamp",
+      "visibility": "friend",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [],
+      "params": [
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::PoolAccumulator",
+        "&mut 0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::reward_accumulator::UserAccumulator",
+        "u64",
+        "bool",
+        "u64"
+      ],
+      "return": [
+        "u64"
+      ]
+    }
+  ],
+  "structs": [
+    {
+      "name": "PoolAccumulator",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "pool_address",
+          "type": "address"
+        },
+        {
+          "name": "value_per_share",
+          "type": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+        },
+        {
+          "name": "total_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "withdrawn_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "total_shares",
+          "type": "u128"
+        },
+        {
+          "name": "last_update_time",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "PoolRewardsUpdatedEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "new_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "total_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "value_per_share",
+          "type": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+        },
+        {
+          "name": "timestamp",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "UserAccumulator",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store",
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "user_address",
+          "type": "address"
+        },
+        {
+          "name": "share_token_balance",
+          "type": "u64"
+        },
+        {
+          "name": "last_value_per_share",
+          "type": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::fixed_point64::FixedPoint64"
+        },
+        {
+          "name": "total_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "paid_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "pending_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "last_update_time",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "UserRewardsUpdatedEvent",
+      "is_native": false,
+      "abilities": [
+        "drop",
+        "store"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "name": "new_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "total_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "pending_rewards",
+          "type": "u64"
+        },
+        {
+          "name": "timestamp",
+          "type": "u64"
+        }
+      ]
+    }
+  ]
+}

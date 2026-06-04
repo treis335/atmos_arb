@@ -1,0 +1,14 @@
+{
+  "name": "atmos-arb-monitor",
+  "version": "1.0.0",
+  "description": "Monitor de arbitragem triangular para a DEX Atmos (Supra)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "discover": "node discover.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "supra-l1-sdk": "^5.0.2"
+  }
+}

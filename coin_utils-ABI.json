@@ -1,0 +1,541 @@
+{
+  "address": "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234",
+  "name": "coin_utils",
+  "friends": [],
+  "exposed_functions": [
+    {
+      "name": "convert_coin_to_fa",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "convert_coin_to_fa_entry",
+      "visibility": "public",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "deposit_refunds_as_coin",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "address",
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ],
+      "return": []
+    },
+    {
+      "name": "ensure_coin_fa_initializations",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "vector<address>"
+      ],
+      "return": []
+    },
+    {
+      "name": "format_fungible_asset",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "0x1::string::String"
+      ]
+    },
+    {
+      "name": "get_asset_balance",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64",
+        "address"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinBalanceResponse"
+      ]
+    },
+    {
+      "name": "get_asset_balance_multi",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "vector<address>",
+        "address",
+        "u64"
+      ],
+      "return": [
+        "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinBalanceResponse>"
+      ]
+    },
+    {
+      "name": "get_coin_detail",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinDetailsResponse"
+      ]
+    },
+    {
+      "name": "get_coin_details",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinDetailsResponse"
+      ]
+    },
+    {
+      "name": "get_coin_details_multi",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "u64"
+      ],
+      "return": [
+        "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinDetailsResponse>"
+      ]
+    },
+    {
+      "name": "get_coin_fa_address",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [],
+      "return": [
+        "vector<address>"
+      ]
+    },
+    {
+      "name": "get_fa_balances_multi",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "vector<address>",
+        "address"
+      ],
+      "return": [
+        "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinBalanceResponse>"
+      ]
+    },
+    {
+      "name": "get_fa_details_multi",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "vector<address>"
+      ],
+      "return": [
+        "vector<0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234::coin_utils::CoinDetailsResponse>"
+      ]
+    },
+    {
+      "name": "get_original",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": true,
+      "generic_type_params": [],
+      "params": [
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": [
+        "0x1::string::String"
+      ]
+    },
+    {
+      "name": "unwrap",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "0x1::fungible_asset::FungibleAsset"
+      ],
+      "return": [
+        "0x1::coin::Coin<T0>"
+      ]
+    },
+    {
+      "name": "withdraw_coin_as_fa",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": [
+        "0x1::fungible_asset::FungibleAsset"
+      ]
+    },
+    {
+      "name": "withdraw_coin_as_fa_and_deposit",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>",
+        "u64"
+      ],
+      "return": []
+    },
+    {
+      "name": "withdraw_coins_as_fa",
+      "visibility": "public",
+      "is_entry": false,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        },
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "vector<0x1::object::Object<0x1::fungible_asset::Metadata>>",
+        "vector<u64>"
+      ],
+      "return": [
+        "vector<0x1::fungible_asset::FungibleAsset>"
+      ]
+    },
+    {
+      "name": "withdraw_deposit_fa_as_coin",
+      "visibility": "public",
+      "is_entry": true,
+      "is_view": false,
+      "generic_type_params": [
+        {
+          "constraints": []
+        }
+      ],
+      "params": [
+        "&signer",
+        "0x1::object::Object<0x1::fungible_asset::Metadata>"
+      ],
+      "return": []
+    }
+  ],
+  "structs": [
+    {
+      "name": "AssetBalanceResponse",
+      "is_native": false,
+      "abilities": [],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "symbol",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "decimals",
+          "type": "u8"
+        },
+        {
+          "name": "coin_type_info",
+          "type": "0x1::option::Option<0x1::type_info::TypeInfo>"
+        },
+        {
+          "name": "fa_metadata",
+          "type": "0x1::option::Option<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "balance_coin",
+          "type": "u64"
+        },
+        {
+          "name": "balance_fa",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "CoinBalanceResponse",
+      "is_native": false,
+      "abilities": [],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "symbol",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "decimals",
+          "type": "u8"
+        },
+        {
+          "name": "coin_type_info",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "fa_metadata",
+          "type": "0x1::option::Option<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        },
+        {
+          "name": "balance_coin",
+          "type": "u64"
+        },
+        {
+          "name": "balance_fa",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "CoinDetailsResponse",
+      "is_native": false,
+      "abilities": [],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "name",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "symbol",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "decimals",
+          "type": "u8"
+        },
+        {
+          "name": "coin_type_info",
+          "type": "0x1::string::String"
+        },
+        {
+          "name": "fa_metadata",
+          "type": "0x1::option::Option<0x1::object::Object<0x1::fungible_asset::Metadata>>"
+        }
+      ]
+    },
+    {
+      "name": "PLACEHOLDER",
+      "is_native": false,
+      "abilities": [
+        "key"
+      ],
+      "generic_type_params": [],
+      "fields": [
+        {
+          "name": "dummy_field",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}
