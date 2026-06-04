@@ -1,69 +1,73 @@
-// detector.js
+// detector.js — grafo + ciclos de arbitragem (3 e 4 hops)
 const config = require('./config');
 
 function buildGraph(reservesData) {
   const graph = new Map();
   for (const r of reservesData) {
     const { pool, rawPrice } = r;
-    const feeFactor = 1 - pool.swapFeeBps / 10000;
-    const price0to1 = rawPrice * feeFactor;
-    const price1to0 = (1 / rawPrice) * feeFactor;
-    const token0 = pool.token0Type;
-    const token1 = pool.token1Type;
-    if (!graph.has(token0)) graph.set(token0, []);
-    if (!graph.has(token1)) graph.set(token1, []);
-    graph.get(token0).push({ to: token1, price: price0to1, pool: pool.address });
-    graph.get(token1).push({ to: token0, price: price1to0, pool: pool.address });
+    const fee = 1 - (Number(pool.swapFeeBps) || 0) / 10000;
+    const t0 = pool.token0Type;
+    const t1 = pool.token1Type;
+    if (!graph.has(t0)) graph.set(t0, []);
+    if (!graph.has(t1)) graph.set(t1, []);
+    graph.get(t0).push({ to: t1, price: rawPrice * fee, pool: pool.address, from: t0, reserve0: r.reserve0, reserve1: r.reserve1 });
+    graph.get(t1).push({ to: t0, price: (1 / rawPrice) * fee, pool: pool.address, from: t1, reserve0: r.reserve1, reserve1: r.reserve0 });
   }
   return graph;
 }
 
-function findTriangularCycles(graph, minProfit) {
+function findCycles(graph, minProfit, maxHops = 3) {
   const cycles = [];
   const tokens = Array.from(graph.keys());
 
   for (const start of tokens) {
-    const visited = new Set();
-    const path = [];
     const edges = [];
+    const visitedPools = new Set();
 
     function dfs(current, depth) {
-      if (depth === 3) {
-        if (current === start && edges.length === 3) {
-          let product = 1;
-          for (const e of edges) product *= e.price;
-          const profitPct = (product - 1) * 100;
-          if (profitPct >= minProfit) {
-            cycles.push({
-              route: edges.map(e => ({
-                from: e.from,
-                to: e.to,
-                pool: e.pool.slice(0, 10)
-              })),
-              profitPct,
-              product
-            });
-          }
+      if (depth > 0 && current === start) {
+        let product = 1;
+        for (const e of edges) product *= e.price;
+        const profitPct = (product - 1) * 100;
+        if (profitPct >= minProfit) {
+          cycles.push({
+            route: edges.map(e => ({ from: e.from, to: e.to, pool: e.pool })),
+            profitPct,
+            product,
+            // optimal amount estimate based on smallest reserve (simplified)
+            liquidityScore: Math.min(...edges.map(e => e.reserve0 || 0)),
+          });
         }
         return;
       }
+      if (depth >= maxHops) return;
+
       const neighbors = graph.get(current) || [];
       for (const edge of neighbors) {
-        if (depth === 2 && edge.to !== start) continue;
-        if (depth < 2 && visited.has(edge.to)) continue;
-        visited.add(edge.to);
-        edges.push({ ...edge, from: current });
+        if (visitedPools.has(edge.pool)) continue;
+        if (depth < maxHops - 1 && edge.to === start) {
+          // Only allow early close at exactly depth+1 == maxHops
+          if (depth + 1 < 2) continue; // minimum 3 hops
+        }
+        if (depth < maxHops - 1 && edge.to !== start) {
+          // Avoid revisiting tokens mid-path (except start)
+          const inPath = edges.some(e => e.to === edge.to);
+          if (inPath) continue;
+        }
+
+        visitedPools.add(edge.pool);
+        edges.push(edge);
         dfs(edge.to, depth + 1);
         edges.pop();
-        visited.delete(edge.to);
+        visitedPools.delete(edge.pool);
       }
     }
     dfs(start, 0);
   }
 
-  // remover duplicados (ciclos iguais começando em tokens diferentes)
-  const unique = [];
+  // Deduplicar: ciclos com as mesmas pools (diferente ponto de partida)
   const seen = new Set();
+  const unique = [];
   for (const c of cycles) {
     const key = c.route.map(s => s.pool).sort().join('|');
     if (!seen.has(key)) {
@@ -71,8 +75,8 @@ function findTriangularCycles(graph, minProfit) {
       unique.push(c);
     }
   }
-  unique.sort((a, b) => b.profitPct - a.profitPct);
-  return unique;
+
+  return unique.sort((a, b) => b.profitPct - a.profitPct);
 }
 
-module.exports = { buildGraph, findTriangularCycles };
+module.exports = { buildGraph, findCycles };

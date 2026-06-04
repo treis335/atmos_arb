@@ -1,3 +1,3 @@
 // index.js
-console.log('🚀 Iniciando Monitor de Arbitragem Atmos...\n');
+console.log('🚀 A iniciar Atmos Arb Bot...\n');
 require('./monitor');

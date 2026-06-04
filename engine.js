@@ -1,42 +1,39 @@
-// engine.js
+// engine.js — fetch reserves para todos os pools Atmos
 const { SupraClient } = require('supra-l1-sdk');
 const config = require('./config');
+const { getSymbol, getDecimals } = require('./tokenRegistry');
 
-let client = null;
-
+let _client = null;
 async function getClient() {
-  if (!client) client = await SupraClient.init(config.rpc);
-  return client;
+  if (!_client) _client = await SupraClient.init(config.rpc);
+  return _client;
 }
 
 async function fetchReservesForPool(pool) {
   const client = await getClient();
   try {
-    const balances = await client.invokeViewMethod(`${config.atmosModule}::liquidity_pool::pool_balances`, [], [pool.address]);
+    const balances = await client.invokeViewMethod(
+      `${config.atmosModule}::liquidity_pool::pool_balances`, [], [pool.address]
+    );
     if (!balances || balances.length < 2) return null;
-    const reserve0Raw = Number(balances[0]);
-    const reserve1Raw = Number(balances[1]);
-    const reserve0 = reserve0Raw / (10 ** pool.decimals0);
-    const reserve1 = reserve1Raw / (10 ** pool.decimals1);
-    const price = reserve1 / reserve0; // token0 -> token1
-    return {
-      pool,
-      reserve0,
-      reserve1,
-      rawPrice: price,
-    };
-  } catch (err) {
-    return null;
-  }
+
+    const dec0 = getDecimals(pool.token0Type);
+    const dec1 = getDecimals(pool.token1Type);
+    const reserve0 = Number(balances[0]) / (10 ** dec0);
+    const reserve1 = Number(balances[1]) / (10 ** dec1);
+
+    if (reserve0 === 0 || reserve1 === 0) return null;
+    const price = reserve1 / reserve0;
+
+    return { pool, reserve0, reserve1, rawPrice: price };
+  } catch (_) { return null; }
 }
 
 async function fetchAllReserves(pools, onProgress) {
   const results = [];
   let completed = 0;
-  const total = pools.length;
-  const limit = config.maxConcurrent;
   const queue = [...pools];
-  const promises = [];
+  const limit = config.maxConcurrent;
 
   const worker = async () => {
     while (queue.length) {
@@ -44,19 +41,16 @@ async function fetchAllReserves(pools, onProgress) {
       const data = await fetchReservesForPool(pool);
       if (data) results.push(data);
       completed++;
-      if (onProgress) onProgress(completed, total);
+      if (onProgress) onProgress(completed, pools.length);
     }
   };
 
-  for (let i = 0; i < limit; i++) promises.push(worker());
-  await Promise.all(promises);
+  await Promise.all(Array.from({ length: limit }, worker));
   return results;
 }
 
-function friendlyToken(type) {
-  if (type === '0x1::supra_coin::SupraCoin') return 'SUPRA';
-  const parts = type.split('::');
-  return parts[parts.length - 1] || type.slice(0, 10);
+function friendlyToken(addr) {
+  return getSymbol(addr);
 }
 
 module.exports = { fetchAllReserves, friendlyToken };
