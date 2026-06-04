@@ -3,7 +3,7 @@ module.exports = {
   rpc: 'https://rpc-mainnet.supra.com',
   atmosModule: '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
   pollIntervalMs: 8000,
-  maxConcurrent: 30,
+  maxConcurrent: 5,
   minProfitPercent: 0.05,
   maxCycles: 4,          // max hops por ciclo (3 = triangular, 4 = quadrangular)
 
