@@ -1,4 +1,4 @@
-// engine.js — usa simulate_swap_exact_in_weighted para preços reais (com slippage + fees)
+// engine.js — preços reais via simulate_swap (weighted + stable)
 const { SupraClient } = require('supra-l1-sdk');
 const config = require('./config');
 const { getSymbol } = require('./tokenRegistry');
@@ -10,24 +10,29 @@ async function getClient() {
   return _client;
 }
 
-// Simula swap real: devolve o amount_out para amount_in numa pool específica
-async function simulateSwap(poolAddress, tokenInAddr, tokenOutAddr, amountInRaw) {
+// Simula swap real: devolve amount_out para amount_in numa pool
+// Suporta weighted e stable pools
+async function simulateSwap(poolAddress, tokenInAddr, tokenOutAddr, amountInRaw, poolType) {
   const client = await getClient();
+
+  // Stable pools usam função diferente
+  const fn = poolType === 'stable'
+    ? `${config.atmosModule}::liquidity_pool::simulate_swap_exact_in_stable`
+    : `${config.atmosModule}::liquidity_pool::simulate_swap_exact_in_weighted`;
+
   try {
     const result = await client.invokeViewMethod(
-      `${config.atmosModule}::liquidity_pool::simulate_swap_exact_in_weighted`,
+      fn,
       [],
       [poolAddress, tokenInAddr, tokenOutAddr, String(amountInRaw), '{"vec":[]}']
     );
-    // result é um SwapSimulate: { amount_in, amount_out, ... }
     if (!result) return null;
     const amountOut = Number(result.amount_out ?? result[2] ?? 0);
     return amountOut > 0 ? amountOut : null;
   } catch (_) { return null; }
 }
 
-// Para o grafo, ainda precisamos de pool_balances para filtrar pools vazias
-// e obter uma estimativa de liquidez — mas o preço efectivo vem do simulate
+// Para o grafo: pool_balances para filtrar pools vazias + simulate para preço real
 async function fetchReservesForPool(pool) {
   const client = await getClient();
   try {
@@ -45,6 +50,7 @@ async function fetchReservesForPool(pool) {
 
     if (r0 == null || r1 == null) return null;
 
+    // Usar decimais do pools.json (fonte de verdade para FA tokens)
     const dec0 = pool.decimals0 ?? 8;
     const dec1 = pool.decimals1 ?? 8;
     const reserve0 = Number(r0) / (10 ** dec0);
@@ -53,17 +59,17 @@ async function fetchReservesForPool(pool) {
     if (!reserve0 || !reserve1) return null;
     if (reserve0 < config.minLiquidity || reserve1 < config.minLiquidity) return null;
 
-    // Preço real via simulate: usar 1 unidade do token0 como probe
-    // probe = 1 token0 em raw units
-    const probeRaw = 10 ** dec0; // 1 token0
-    const amountOutRaw = await simulateSwap(pool.address, pool.token0Type, pool.token1Type, probeRaw);
+    // Preço real via simulate: 1 token0 como probe
+    const probeRaw = 10 ** dec0;
+    const amountOutRaw = await simulateSwap(
+      pool.address, pool.token0Type, pool.token1Type, probeRaw, pool.poolType
+    );
 
     let rawPrice;
     if (amountOutRaw != null && amountOutRaw > 0) {
-      // Preço real: quantos token1 por 1 token0 (após fees e slippage)
       rawPrice = amountOutRaw / (10 ** dec1);
     } else {
-      // Fallback: rácio de reserves (menos preciso)
+      // Fallback: rácio de reserves (menos preciso, mas melhor que nada)
       rawPrice = reserve1 / reserve0;
     }
 
