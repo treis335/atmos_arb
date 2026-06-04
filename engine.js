@@ -1,10 +1,9 @@
-// engine.js
+// engine.js — usa decimais directamente do pools.json (fonte de verdade)
 const { SupraClient } = require('supra-l1-sdk');
 const config = require('./config');
-const { getSymbol, getDecimals } = require('./tokenRegistry');
+const { getSymbol } = require('./tokenRegistry');
 
 let _client = null;
-let _debugLogged = false;
 
 async function getClient() {
   if (!_client) _client = await SupraClient.init(config.rpc);
@@ -18,29 +17,20 @@ async function fetchReservesForPool(pool) {
       `${config.atmosModule}::liquidity_pool::pool_balances`, [], [pool.address]
     );
 
-    // Log raw format once to debug_balances.json
-    if (!_debugLogged) {
-      _debugLogged = true;
-      require('fs').appendFileSync('debug_balances.json',
-        JSON.stringify({ pool: pool.address, raw }, null, 2) + '\n---\n');
-    }
-
-    // Normalize response — Atmos returns various formats
+    // Atmos devolve [[r0, r1]]
     let r0, r1;
     if (Array.isArray(raw)) {
       if (Array.isArray(raw[0])) { [r0, r1] = raw[0]; }
       else { [r0, r1] = raw; }
     } else if (raw && typeof raw === 'object') {
-      const vals = Object.values(raw);
-      [r0, r1] = vals;
-    } else {
-      return null;
-    }
+      [r0, r1] = Object.values(raw);
+    } else { return null; }
 
     if (r0 == null || r1 == null) return null;
 
-    const dec0 = getDecimals(pool.token0Type);
-    const dec1 = getDecimals(pool.token1Type);
+    // Decimais do pools.json — fonte de verdade (discover.js já os buscou na chain)
+    const dec0 = pool.decimals0 ?? 8;
+    const dec1 = pool.decimals1 ?? 8;
     const reserve0 = Number(r0) / (10 ** dec0);
     const reserve1 = Number(r1) / (10 ** dec1);
 
@@ -53,7 +43,6 @@ async function fetchAllReserves(pools, onProgress) {
   const results = [];
   let completed = 0;
   const queue = [...pools];
-  const limit = config.maxConcurrent;
 
   const worker = async () => {
     while (queue.length) {
@@ -65,7 +54,7 @@ async function fetchAllReserves(pools, onProgress) {
     }
   };
 
-  await Promise.all(Array.from({ length: limit }, worker));
+  await Promise.all(Array.from({ length: config.maxConcurrent }, worker));
   return results;
 }
 
