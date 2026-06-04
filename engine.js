@@ -10,29 +10,48 @@ async function getClient() {
   return _client;
 }
 
-// Simula swap real: devolve amount_out para amount_in numa pool
-// Suporta weighted e stable pools
+// Simula swap: devolve amount_out (raw) para amount_in (raw) numa pool
+// O contrato devolve um SwapSimulate struct — usamos deconstruct_swap_simulate
+// para extrair os valores. O campo [1] = amount_out.
 async function simulateSwap(poolAddress, tokenInAddr, tokenOutAddr, amountInRaw, poolType) {
   const client = await getClient();
 
-  // Stable pools usam função diferente
   const fn = poolType === 'stable'
     ? `${config.atmosModule}::liquidity_pool::simulate_swap_exact_in_stable`
     : `${config.atmosModule}::liquidity_pool::simulate_swap_exact_in_weighted`;
 
   try {
-    const result = await client.invokeViewMethod(
-      fn,
-      [],
-      [poolAddress, tokenInAddr, tokenOutAddr, String(amountInRaw), '{"vec":[]}']
-    );
-    if (!result) return null;
-    const amountOut = Number(result.amount_out ?? result[2] ?? 0);
+    // O SDK serializa os args automaticamente:
+    // pool = Object<Pool> (address), tokenIn/Out = Object<Metadata> (address), amount = u64
+    // option<address> = {"vec":[]} para sem referral
+    const swapSim = await client.invokeViewMethod(fn, [], [
+      poolAddress, tokenInAddr, tokenOutAddr, String(amountInRaw), '{"vec":[]}'
+    ]);
+
+    if (!swapSim) return null;
+
+    // O SDK pode devolver o struct directamente como objecto ou já desestruturado
+    // Tentamos várias formas de extrair amount_out
+    let amountOut = null;
+
+    if (swapSim && typeof swapSim === 'object' && !Array.isArray(swapSim)) {
+      // Struct com campos nomeados (amount_in, amount_out, ...)
+      amountOut = Number(swapSim.amount_out ?? swapSim[1] ?? 0);
+    } else if (Array.isArray(swapSim)) {
+      // Array de valores — usar deconstruct via segunda chamada ou assumir índice
+      // deconstruct_swap_simulate retorna: [amount_in, amount_out, fee_amount, ...]
+      if (Array.isArray(swapSim[0])) {
+        amountOut = Number(swapSim[0][1] ?? 0);
+      } else {
+        amountOut = Number(swapSim[1] ?? 0);
+      }
+    }
+
     return amountOut > 0 ? amountOut : null;
   } catch (_) { return null; }
 }
 
-// Para o grafo: pool_balances para filtrar pools vazias + simulate para preço real
+// Fetch reserves + preço real via simulate para uma pool
 async function fetchReservesForPool(pool) {
   const client = await getClient();
   try {
@@ -50,7 +69,6 @@ async function fetchReservesForPool(pool) {
 
     if (r0 == null || r1 == null) return null;
 
-    // Usar decimais do pools.json (fonte de verdade para FA tokens)
     const dec0 = pool.decimals0 ?? 8;
     const dec1 = pool.decimals1 ?? 8;
     const reserve0 = Number(r0) / (10 ** dec0);
@@ -59,7 +77,7 @@ async function fetchReservesForPool(pool) {
     if (!reserve0 || !reserve1) return null;
     if (reserve0 < config.minLiquidity || reserve1 < config.minLiquidity) return null;
 
-    // Preço real via simulate: 1 token0 como probe
+    // Preço real via simulate com 1 token0 como probe
     const probeRaw = 10 ** dec0;
     const amountOutRaw = await simulateSwap(
       pool.address, pool.token0Type, pool.token1Type, probeRaw, pool.poolType
@@ -69,7 +87,7 @@ async function fetchReservesForPool(pool) {
     if (amountOutRaw != null && amountOutRaw > 0) {
       rawPrice = amountOutRaw / (10 ** dec1);
     } else {
-      // Fallback: rácio de reserves (menos preciso, mas melhor que nada)
+      // Fallback: rácio de reserves
       rawPrice = reserve1 / reserve0;
     }
 
