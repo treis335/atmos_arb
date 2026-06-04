@@ -6,7 +6,20 @@ module.exports = {
   maxConcurrent: 5,
   minProfitPercent: 0.05,
   maxCycles: 4,          // max hops por ciclo (3 = triangular, 4 = quadrangular)
-  minLiquidity: 1000,      // reserva minima por lado do pool (unidades apos decimais)
+  minLiquidity: 1000,    // reserva minima por lado do pool (unidades após decimais)
+
+  // ── Configuração de execução ──────────────────────────────────────────────
+  execution: {
+    autoExecute: false,        // começa desligado — activar com tecla [A] no TUI
+    minProfitPercent: 0.5,     // % mínimo para executar (mais alto que minProfitPercent)
+    minAmountIn: 10,           // mínimo SUPRA por trade
+    maxAmountIn: 500,          // máximo SUPRA por trade
+    gasReserveSUPRA: 1.0,      // SUPRA a reservar para gas (nunca usar abaixo deste saldo)
+    cooldownMs: 15000,         // ms entre execuções consecutivas
+    slippageTolerance: 0.005,  // 0.5% slippage máximo por hop
+    maxGasAmount: 10000,       // gas máximo por tx
+    gasUnitPrice: 100,         // preço do gas em octas
+  },
 
   // Tokens conhecidos — símbolo e decimais
   // Os restantes são resolvidos em runtime via coin_utils::get_coin_detail
