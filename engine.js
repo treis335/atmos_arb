@@ -1,4 +1,4 @@
-// engine.js — usa decimais directamente do pools.json (fonte de verdade)
+// engine.js
 const { SupraClient } = require('supra-l1-sdk');
 const config = require('./config');
 const { getSymbol } = require('./tokenRegistry');
@@ -28,13 +28,18 @@ async function fetchReservesForPool(pool) {
 
     if (r0 == null || r1 == null) return null;
 
-    // Decimais do pools.json — fonte de verdade (discover.js já os buscou na chain)
+    // Decimais do pools.json — fonte de verdade
     const dec0 = pool.decimals0 ?? 8;
     const dec1 = pool.decimals1 ?? 8;
     const reserve0 = Number(r0) / (10 ** dec0);
     const reserve1 = Number(r1) / (10 ** dec1);
 
     if (!reserve0 || !reserve1) return null;
+
+    // Filtrar pools quase vazias — preços irreais (ex: 0.00001 / 0.0000001)
+    // Mínimo: ambos os lados >= minLiquidity (unidades após decimais)
+    if (reserve0 < config.minLiquidity || reserve1 < config.minLiquidity) return null;
+
     return { pool, reserve0, reserve1, rawPrice: reserve1 / reserve0 };
   } catch (_) { return null; }
 }

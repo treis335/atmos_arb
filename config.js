@@ -6,6 +6,7 @@ module.exports = {
   maxConcurrent: 5,
   minProfitPercent: 0.05,
   maxCycles: 4,          // max hops por ciclo (3 = triangular, 4 = quadrangular)
+  minLiquidity: 10,      // reserva minima por lado do pool (unidades apos decimais)
 
   // Tokens conhecidos — símbolo e decimais
   // Os restantes são resolvidos em runtime via coin_utils::get_coin_detail
