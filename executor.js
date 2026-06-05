@@ -1,16 +1,5 @@
 // executor.js — Execução real via atmos_entry::swap_exact_in_*_entry
-//
-// Assinatura correcta (do ABI atmos_entry-ABI.json):
-//   swap_exact_in_weighted_entry(
-//     &signer,
-//     pool:           Object<Pool>,        <- endereço da pool
-//     token_in:       Object<Metadata>,    <- endereço FA metadata token entrada
-//     amount_in:      u64,                 <- amount raw
-//     token_out:      Object<Metadata>,    <- endereço FA metadata token saída
-//     min_amount_out: u64                  <- slippage protection
-//   )
-//   (idem para swap_exact_in_stable_entry)
-
+// v2: serialização BCS corrigida, slippage por hop, logs detalhados
 require('dotenv').config();
 const { SupraClient, HexString, SupraAccount, BCS } = require('supra-l1-sdk');
 const config = require('./config');
@@ -23,7 +12,6 @@ function getWallet() {
   if (!process.env.PRIVATE_KEY)    throw new Error('PRIVATE_KEY não definido no .env');
   if (!process.env.SENDER_ADDRESS) throw new Error('SENDER_ADDRESS não definido no .env');
   if (_account) return { account: _account, sender: _sender };
-
   const pkHex = process.env.PRIVATE_KEY.startsWith('0x')
     ? process.env.PRIVATE_KEY : '0x' + process.env.PRIVATE_KEY;
   _account = new SupraAccount(HexString.ensure(pkHex).toUint8Array());
@@ -36,7 +24,6 @@ async function getClient() {
   return _client;
 }
 
-// Serializa endereço como AccountAddress 32 bytes (Object<X> = endereço)
 function serAddr(addr) {
   const hex = (addr.startsWith('0x') ? addr.slice(2) : addr).padStart(64, '0');
   const ser = new BCS.Serializer();
@@ -50,52 +37,49 @@ function serU64(value) {
   return ser.getBytes();
 }
 
-// Executa um swap no Atmos
-// tokenIn/Out : endereços FA metadata (Object<Metadata>)
-// amountIn    : BigInt raw units
-// minAmountOut: BigInt raw units (0 = sem slippage protection, aceita qualquer output)
 async function executeAtmosSwap(poolAddress, tokenIn, amountIn, tokenOut, minAmountOut, poolType, seqNum) {
   const client = await getClient();
   const { account, sender } = getWallet();
-
   const fnName = poolType === 'stable'
     ? 'swap_exact_in_stable_entry'
     : 'swap_exact_in_weighted_entry';
 
-  const rawTx = await client.createRawTxObject(
-    new HexString(sender),
-    BigInt(seqNum),
-    config.atmosModule,
-    'atmos_entry',
-    fnName,
-    [], // sem type args (FA tokens não precisam)
-    [
-      serAddr(poolAddress),       // pool: Object<Pool>
-      serAddr(tokenIn),           // token_in: Object<Metadata>
-      serU64(amountIn),           // amount_in: u64
-      serAddr(tokenOut),          // token_out: Object<Metadata>
-      serU64(minAmountOut),       // min_amount_out: u64
-    ],
-    {
-      maxGasAmount:   BigInt(config.execution?.maxGasAmount  ?? 10000),
-      gasUnitPrice:   BigInt(config.execution?.gasUnitPrice  ?? 100),
-      expirationTime: Math.floor(Date.now() / 1000) + 300,
-    }
-  );
-
-  const ser = new BCS.Serializer();
-  rawTx.serialize(ser);
-  return client.sendTxUsingSerializedRawTransaction(
-    account, ser.getBytes(),
-    { enableWaitForTransaction: true, enableTransactionSimulation: true }
-  );
+  const originalLog = console.log;
+  console.log = () => {};
+  try {
+    const rawTx = await client.createRawTxObject(
+      new HexString(sender), BigInt(seqNum),
+      config.atmosModule, 'atmos_entry', fnName,
+      [],
+      [
+        serAddr(poolAddress),
+        serAddr(tokenIn),
+        serU64(amountIn),
+        serAddr(tokenOut),
+        serU64(minAmountOut),
+      ],
+      {
+        maxGasAmount:   BigInt(config.execution?.maxGasAmount  ?? 15000),
+        gasUnitPrice:   BigInt(config.execution?.gasUnitPrice  ?? 100),
+        expirationTime: Math.floor(Date.now() / 1000) + 300,
+      }
+    );
+    const ser = new BCS.Serializer();
+    rawTx.serialize(ser);
+    return client.sendTxUsingSerializedRawTransaction(
+      account, ser.getBytes(),
+      { enableWaitForTransaction: true, enableTransactionSimulation: true }
+    );
+  } finally {
+    console.log = originalLog;
+  }
 }
 
-// Executa uma rota completa de arbitragem (múltiplos hops sequenciais)
 async function executeArbitrage(opportunity, onLog = () => {}) {
   const client = await getClient();
   const { sender } = getWallet();
   const txHashes = [];
+  const slippage = config.execution?.slippageTolerance ?? 0.005;
 
   try {
     onLog('{grey-fg}A obter sequence number...{/}');
@@ -103,7 +87,6 @@ async function executeArbitrage(opportunity, onLog = () => {}) {
     let seqNum = Number(accInfo.sequence_number);
 
     const { route, optimalAmountRaw, poolsMap } = opportunity;
-    const slippage = config.execution?.slippageTolerance ?? 0.005;
 
     for (let i = 0; i < route.length; i++) {
       const hop      = route[i];
@@ -122,7 +105,7 @@ async function executeArbitrage(opportunity, onLog = () => {}) {
 
       const fromSym = hop.fromSymbol ?? hop.from.slice(0, 8);
       const toSym   = hop.toSymbol   ?? hop.to.slice(0, 8);
-      onLog(`{grey-fg}Hop ${i+1}/${route.length}: ${fromSym}→${toSym} via ${poolType} (${Number(amountIn)} raw){/}`);
+      onLog(`{grey-fg}Hop ${i+1}/${route.length}: ${fromSym}→${toSym} (${poolType}) in:${Number(amountIn)}{/}`);
 
       let txResult;
       try {
@@ -130,7 +113,7 @@ async function executeArbitrage(opportunity, onLog = () => {}) {
           hop.pool, hop.from, amountIn, hop.to, minAmountOut, poolType, seqNum
         );
       } catch (e) {
-        onLog(`{red-fg}❌ Hop ${i+1} erro: ${e.message.slice(0, 80)}{/}`);
+        onLog(`{red-fg}❌ Hop ${i+1}: ${e.message.slice(0, 80)}{/}`);
         return txHashes.length > 0
           ? { txHash: txHashes[0], partial: true, txHashes, success: false }
           : null;
@@ -159,7 +142,6 @@ async function executeArbitrage(opportunity, onLog = () => {}) {
   }
 }
 
-// Fetch saldo SUPRA
 async function fetchWalletBalance() {
   try {
     const { sender } = getWallet();

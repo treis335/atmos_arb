@@ -1,4 +1,5 @@
 // monitor.js — TUI com execução automática
+// v2: stats de execução, breakdown de oportunidades, suporte a hops ≥3
 require('dotenv').config();
 const blessed = require('blessed');
 const fs = require('fs');
@@ -17,11 +18,11 @@ const allPools = JSON.parse(fs.readFileSync('pools.json', 'utf8'));
 preload();
 
 // ──── TUI SETUP ────────────────────────────────────────────────────────────
-const screen = blessed.screen({ smartCSR: true, title: 'ATMOS ARB BOT' });
+const screen = blessed.screen({ smartCSR: true, title: 'ATMOS ARB BOT v2' });
 
 const header = blessed.box({
   top: 0, left: 0, width: '100%', height: 3,
-  content: ' ◈  ATMOS ARB BOT v2.0  ·  Detector + Executor  ·  Atmos DEX',
+  content: ' ◈  ATMOS ARB BOT v2.0  ·  Detector + Executor  ·  Atmos DEX  ·  Supra Network',
   tags: true, style: { fg: 'cyan', bold: true, bg: 'black' },
 });
 
@@ -68,12 +69,8 @@ const footer = blessed.box({
   tags: true, style: { fg: 'black', bg: 'cyan' },
 });
 
-screen.append(header);
-screen.append(statsBar);
-screen.append(oppBox);
-screen.append(pairsBox);
-screen.append(logBox);
-screen.append(statsBox);
+screen.append(header); screen.append(statsBar); screen.append(oppBox);
+screen.append(pairsBox); screen.append(logBox); screen.append(statsBox);
 screen.append(footer);
 
 // ──── STATE ────────────────────────────────────────────────────────────────
@@ -81,7 +78,6 @@ const logLines = [];
 let iteration = 0;
 let totalCyclesFound = 0;
 let bestEver = 0;
-let lastCycleMs = 0;
 let autoExecute = config.execution?.autoExecute ?? false;
 let autoTxInProgress = false;
 let lastAutoTxTime = 0;
@@ -109,8 +105,9 @@ function renderOpps(cycles) {
     const c = cycles[i];
     const pct = c.profitPct.toFixed(3);
     const color = c.profitPct > 2 ? 'green' : c.profitPct > 0.5 ? 'yellow' : 'grey';
-    const route = c.route.map(e => getSymbol(e.from)).join(' → ') + ' → ' + getSymbol(c.route[c.route.length - 1].to);
-    lines.push(`{${color}-fg}${String(i+1).padStart(2)}. +${pct.padStart(7)}%{/}  {white-fg}${c.route.length}h{/}  ${route}`);
+    const route = c.route.map(e => getSymbol(e.from)).join(' → ') + ' → ' + getSymbol(c.route[c.route.length-1].to);
+    const liq = c.liquidityScore > 0 ? ` {grey-fg}liq:${c.liquidityScore.toFixed(0)}{/}` : '';
+    lines.push(`{${color}-fg}${String(i+1).padStart(2)}. +${pct.padStart(7)}%{/}  {white-fg}${c.route.length}h{/}  ${route}${liq}`);
   }
   oppBox.setContent(lines.join('\n'));
   oppBox.setScrollPerc(0);
@@ -119,53 +116,54 @@ function renderOpps(cycles) {
 function renderPairs(reserves) {
   const lines = [];
   const sorted = [...reserves]
-    .sort((a, b) => (b.reserve0 * b.rawPrice + b.reserve1) - (a.reserve0 * a.rawPrice + a.reserve1))
-    .slice(0, 30);
+    .sort((a, b) => (b.reserve0 + b.reserve1) - (a.reserve0 + a.reserve1))
+    .slice(0, 35);
   for (const r of sorted) {
     const t0 = getSymbol(r.pool.token0Type);
     const t1 = getSymbol(r.pool.token1Type);
     const price = r.rawPrice < 0.001 ? r.rawPrice.toExponential(2) : r.rawPrice.toFixed(4);
     const fee = (Number(r.pool.swapFeeBps) / 100).toFixed(2);
-    lines.push(`{cyan-fg}${t0}{/}/{cyan-fg}${t1}{/}  {white-fg}${price}{/}  {grey-fg}${fee}%{/}`);
+    const pt = r.pool.poolType === 'stable' ? '{magenta-fg}S{/}' : '{cyan-fg}W{/}';
+    lines.push(`${pt} {cyan-fg}${t0}{/}/{cyan-fg}${t1}{/}  {white-fg}${price}{/}  {grey-fg}${fee}%{/}`);
   }
   pairsBox.setContent(lines.join('\n'));
 }
 
 function renderStats(cycles, reserves, elapsed) {
   const autoColor = autoExecute ? 'green' : 'grey';
-  const autoLabel = autoExecute ? '🟢 AUTO ON' : '⚪ AUTO OFF';
   const supraBal = walletBalance.SUPRA != null ? walletBalance.SUPRA.toFixed(4) + ' SUPRA' : 'N/A';
+  const hop3 = cycles.filter(c => c.route.length === 3).length;
+  const hop4 = cycles.filter(c => c.route.length === 4).length;
   const lines = [
     `{yellow-fg}Ciclo:{/}       #${iteration}`,
     `{yellow-fg}Pools:{/}       ${reserves.length}/${allPools.length}`,
-    `{yellow-fg}Opps:{/}        ${cycles.length}`,
+    `{yellow-fg}Opps:{/}        ${cycles.length}  (3h:${hop3} 4h:${hop4})`,
     `{yellow-fg}Total opps:{/}  ${totalCyclesFound}`,
     `{yellow-fg}Best ever:{/}   +${bestEver.toFixed(3)}%`,
     `{yellow-fg}Ciclo ms:{/}    ${elapsed}ms`,
     ``,
     `{yellow-fg}Wallet:{/}      ${supraBal}`,
-    `{yellow-fg}Txs enviadas:{/} ${totalTxSent}`,
-    `{yellow-fg}Txs sucesso:{/}  ${totalTxSuccess}`,
-    `{yellow-fg}Lucro total:{/}  ${totalProfitSupra.toFixed(4)} SUPRA`,
+    `{yellow-fg}Txs:{/}         ${totalTxSent} sent / ${totalTxSuccess} ok`,
+    `{yellow-fg}Lucro:{/}       ${totalProfitSupra.toFixed(4)} SUPRA`,
     ``,
-    `{${autoColor}-fg}${autoLabel}{/}  {grey-fg}[A] toggle{/}`,
-    `{grey-fg}Min profit: ${config.minProfitPercent}% | Min liq: ${config.minLiquidity}{/}`,
+    `{${autoColor}-fg}${autoExecute ? '🟢 AUTO ON' : '⚪ AUTO OFF'}{/}  {grey-fg}[A]{/}`,
+    `{grey-fg}Min detect: ${config.minProfitPercent}%{/}`,
+    `{grey-fg}Min exec:   ${config.execution?.minProfitPercent ?? 0.35}%{/}`,
   ];
   statsBox.setContent(lines.join('\n'));
 }
 
 // ──── AUTO EXECUTE ─────────────────────────────────────────────────────────
 async function maybeAutoExecute(cycles, reservesData) {
-  if (!autoExecute) return;
-  if (autoTxInProgress) return;
+  if (!autoExecute || autoTxInProgress) return;
   if (!process.env.PRIVATE_KEY || !process.env.SENDER_ADDRESS) return;
-
   const now = Date.now();
-  const cooldown = config.execution?.cooldownMs ?? 10000;
-  if (now - lastAutoTxTime < cooldown) return;
+  if (now - lastAutoTxTime < (config.execution?.cooldownMs ?? 8000)) return;
 
-  // Filtrar oportunidades com lucro acima do mínimo de execução
-  const minExecProfit = config.execution?.minProfitPercent ?? 0.5;
+  const minExecProfit = config.execution?.minProfitPercent ?? 0.35;
+  const gasRes = config.execution?.gasReserveSUPRA ?? 0.5;
+  const available = Math.max(0, (walletBalance.SUPRA ?? 0) - gasRes);
+
   const viable = cycles.filter(c => c.profitPct >= minExecProfit);
   if (!viable.length) return;
 
@@ -176,67 +174,56 @@ async function maybeAutoExecute(cycles, reservesData) {
   log(`{yellow-fg}🤖 Auto-exec: +${best.profitPct.toFixed(3)}% [${best.route.map(e => getSymbol(e.from)).join('→')}]{/}`);
 
   try {
-    // Construir poolsMap para lookup rápido
     const poolsMap = {};
-    for (const r of reservesData) {
-      poolsMap[r.pool.address] = r.pool;
-    }
+    for (const r of reservesData) poolsMap[r.pool.address] = { ...r.pool, reserve0: r.reserve0, reserve1: r.reserve1 };
 
-    // Calcular tamanho óptimo
-    const tokenStart = best.route[0].from;
-    const startDec = 8; // SUPRA e a maioria dos tokens têm 8 decimais
+    const maxAmt = Math.min(config.execution?.maxAmountIn ?? 5000, available);
     const optimal = await findOptimalAmount(
       best.route, poolsMap,
-      config.execution?.minAmountIn ?? 10,
-      Math.min(
-        config.execution?.maxAmountIn ?? 1000,
-        Math.max(0, (walletBalance.SUPRA ?? 0) - (config.execution?.gasReserveSUPRA ?? 0.5))
-      )
+      config.execution?.minAmountIn ?? 5,
+      maxAmt
     );
 
     if (!optimal || optimal.profitPct < minExecProfit) {
-      log(`{grey-fg}Optimal calc: lucro insuficiente após simulate (${optimal?.profitPct?.toFixed(3) ?? '?'}%){/}`);
+      log(`{grey-fg}Optimal insuficiente após simulate (${optimal?.profitPct?.toFixed(3) ?? '?'}%){/}`);
       autoTxInProgress = false;
       return;
     }
 
-    log(`{grey-fg}Optimal: ${optimal.optimalAmount.toFixed(2)} SUPRA → lucro ~${optimal.profitPct.toFixed(3)}%{/}`);
+    log(`{grey-fg}Optimal: ${optimal.optimalAmount.toFixed(2)} SUPRA → ~${optimal.profitPct.toFixed(3)}%{/}`);
 
-    // Montar opportunity para o executor
     const routeWithOutputs = best.route.map((hop, i) => ({
       ...hop,
       fromSymbol: getSymbol(hop.from),
-      toSymbol: getSymbol(hop.to),
-      amountInRaw: optimal.hopOutputs[i]?.amountInRaw ?? 0,
+      toSymbol:   getSymbol(hop.to),
+      amountInRaw:   optimal.hopOutputs[i]?.amountInRaw ?? 0,
       expectedOutRaw: optimal.hopOutputs[i]?.expectedOutRaw ?? 0,
     }));
 
-    const opportunity = {
+    totalTxSent++;
+    const result = await executeArbitrage({
       route: routeWithOutputs,
       optimalAmountRaw: optimal.optimalAmountRaw,
       poolsMap,
-    };
-
-    totalTxSent++;
-    const result = await executeArbitrage(opportunity, log);
+    }, log);
 
     if (result?.success) {
       totalTxSuccess++;
       totalProfitSupra += optimal.profit;
-      log(`{green-fg}✅ TX ok! Hash: ${result.txHash?.slice(0, 16)}...{/}`);
+      log(`{green-fg}✅ TX ok! Hash: ${result.txHash?.slice(0, 18)}...{/}`);
     } else if (result?.partial) {
-      log(`{yellow-fg}⚠ Parcial: ${result.txHashes?.length} hops. Hash: ${result.txHash?.slice(0, 16)}...{/}`);
+      log(`{yellow-fg}⚠ Parcial: ${result.txHashes?.length} hops OK{/}`);
     } else {
       log(`{red-fg}❌ Execução falhou.{/}`);
     }
   } catch (e) {
-    log(`{red-fg}❌ Erro execução: ${e.message.slice(0, 80)}{/}`);
+    log(`{red-fg}❌ Erro exec: ${e.message.slice(0, 80)}{/}`);
   }
 
   autoTxInProgress = false;
 }
 
-// ──── KEYS ────────────────────────────────────────────────────────────────
+// ──── KEYS ─────────────────────────────────────────────────────────────────
 screen.key(['q', 'Q', 'C-c'], () => { screen.destroy(); process.exit(0); });
 screen.key(['a', 'A'], () => {
   if (!process.env.PRIVATE_KEY || !process.env.SENDER_ADDRESS) {
@@ -248,37 +235,33 @@ screen.key(['a', 'A'], () => {
   screen.render();
 });
 screen.key(['r', 'R'], () => { log('{yellow-fg}Refresh manual...{/}'); tick(); });
-screen.key(['up'], () => oppBox.scroll(-1));
+screen.key(['up'],   () => oppBox.scroll(-1));
 screen.key(['down'], () => oppBox.scroll(1));
 
-// ──── TICK ────────────────────────────────────────────────────────────────
+// ──── TICK ─────────────────────────────────────────────────────────────────
 async function tick() {
   const start = Date.now();
   iteration++;
+  const autoCol = autoExecute ? 'green' : 'grey';
   statsBar.setContent(` Ciclo {yellow-fg}#${iteration}{/}  |  A carregar ${allPools.length} pools...`);
   screen.render();
 
   const reserves = await fetchAllReserves(allPools, (done, total) => {
-    if (done % 30 === 0) {
+    if (done % 25 === 0) {
       statsBar.setContent(` Ciclo {yellow-fg}#${iteration}{/}  |  🔄 ${done}/${total} pools`);
       screen.render();
     }
   });
 
   const elapsed = Date.now() - start;
-  lastCycleMs = elapsed;
 
-  if (!reserves.length) {
-    log('{red-fg}⚠ Nenhuma pool com liquidez{/}');
-    return;
-  }
+  if (!reserves.length) { log('{red-fg}⚠ Nenhuma pool com liquidez{/}'); return; }
 
-  const graph = buildGraph(reserves);
+  const graph  = buildGraph(reserves);
   const cycles = findCycles(graph, config.minProfitPercent, config.maxCycles);
   totalCyclesFound += cycles.length;
   if (cycles.length && cycles[0].profitPct > bestEver) bestEver = cycles[0].profitPct;
 
-  // Fetch wallet balance (não bloqueia)
   if (process.env.SENDER_ADDRESS) {
     fetchWalletBalance().then(b => { walletBalance = b; }).catch(() => {});
   }
@@ -287,13 +270,12 @@ async function tick() {
   renderPairs(reserves);
   renderStats(cycles, reserves, elapsed);
 
-  const autoColor = autoExecute ? 'green' : 'grey';
   statsBar.setContent(
     ` Ciclo {yellow-fg}#${iteration}{/}  |` +
     `  Pools: {cyan-fg}${reserves.length}/${allPools.length}{/}  |` +
     `  Opps: {${cycles.length > 0 ? 'green' : 'grey'}-fg}${cycles.length}{/}  |` +
     `  Best: {yellow-fg}+${bestEver.toFixed(3)}%{/}  |` +
-    `  {${autoColor}-fg}${autoExecute ? 'AUTO' : 'MANUAL'}{/}  |` +
+    `  {${autoCol}-fg}${autoExecute ? 'AUTO' : 'MANUAL'}{/}  |` +
     `  {grey-fg}${elapsed}ms{/}`
   );
 
@@ -307,7 +289,6 @@ async function tick() {
 
   screen.render();
 
-  // Auto-execute após render (não bloqueia o próximo ciclo)
   if (autoExecute && cycles.length > 0) {
     maybeAutoExecute(cycles, reserves).catch(e => log(`{red-fg}AutoExec err: ${e.message}{/}`));
   }
@@ -315,13 +296,13 @@ async function tick() {
 
 async function start() {
   log('{cyan-fg}▶ Atmos Arb Bot v2.0 iniciado{/}');
-  log(`{grey-fg}Pools: ${allPools.length} | Min lucro: ${config.minProfitPercent}% | Min liq: ${config.minLiquidity}{/}`);
+  log(`{grey-fg}Pools: ${allPools.length} | Min detect: ${config.minProfitPercent}% | Min exec: ${config.execution?.minProfitPercent ?? 0.35}%{/}`);
 
   if (process.env.PRIVATE_KEY && process.env.SENDER_ADDRESS) {
-    log(`{grey-fg}Wallet: ${process.env.SENDER_ADDRESS.slice(0, 10)}...${process.env.SENDER_ADDRESS.slice(-6)}{/}`);
-    log(`{grey-fg}Auto-exec: ${autoExecute ? '🟢 ON' : '⚪ OFF (pressiona A para activar)'}{/}`);
+    log(`{grey-fg}Wallet: ${process.env.SENDER_ADDRESS.slice(0, 12)}...${process.env.SENDER_ADDRESS.slice(-6)}{/}`);
+    log(`{grey-fg}Auto: ${autoExecute ? '🟢 ON' : '⚪ OFF (pressiona [A])'}{/}`);
   } else {
-    log(`{yellow-fg}⚠ Modo só leitura — configura PRIVATE_KEY e SENDER_ADDRESS no .env{/}`);
+    log('{yellow-fg}⚠ Modo só leitura — configura PRIVATE_KEY e SENDER_ADDRESS no .env{/}');
   }
 
   while (true) {

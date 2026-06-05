@@ -1,28 +1,31 @@
-// config.js
-module.exports = {
-  rpc: 'https://rpc-mainnet.supra.com',
-  atmosModule: '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
-  pollIntervalMs: 8000,
-  maxConcurrent: 5,
-  minProfitPercent: 0.05,
-  maxCycles: 4,          // max hops por ciclo (3 = triangular, 4 = quadrangular)
-  minLiquidity: 1000,    // reserva minima por lado do pool (unidades após decimais)
+// config.js — Atmos ARB Bot v2
+require('dotenv').config();
 
-  // ── Configuração de execução ──────────────────────────────────────────────
+module.exports = {
+  rpc: process.env.RPC_URL || 'https://rpc-mainnet.supra.com',
+  atmosModule: '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
+  pollIntervalMs: 6000,
+  maxConcurrent: 6,
+  viewTimeoutMs: 10000,
+  viewRetries: 2,
+  minProfitPercent: 0.05,
+  maxCycles: 4,
+  minLiquidity: 500,
+
+  // ── Execução ────────────────────────────────────────────────────────────
   execution: {
-    autoExecute: false,        // começa desligado — activar com tecla [A] no TUI
-    minProfitPercent: 0.5,     // % mínimo para executar (mais alto que minProfitPercent)
-    minAmountIn: 10,           // mínimo SUPRA por trade
-    maxAmountIn: 500,          // máximo SUPRA por trade
-    gasReserveSUPRA: 1.0,      // SUPRA a reservar para gas (nunca usar abaixo deste saldo)
-    cooldownMs: 15000,         // ms entre execuções consecutivas
-    slippageTolerance: 0.005,  // 0.5% slippage máximo por hop
-    maxGasAmount: 10000,       // gas máximo por tx
-    gasUnitPrice: 100,         // preço do gas em octas
+    autoExecute:       false,
+    minProfitPercent:  0.35,
+    minAmountIn:       5,
+    maxAmountIn:       5000,
+    gasReserveSUPRA:   0.5,
+    cooldownMs:        8000,
+    slippageTolerance: 0.005,
+    maxGasAmount:      15000,
+    gasUnitPrice:      100,
   },
 
-  // Tokens conhecidos — símbolo e decimais
-  // Os restantes são resolvidos em runtime via coin_utils::get_coin_detail
+  // ── Tokens conhecidos ────────────────────────────────────────────────────
   knownTokens: {
     '0x1::supra_coin::SupraCoin': { symbol: 'SUPRA',    decimals: 8 },
     '0x8f7d16ade319b0fce368ca6cdb98589c4527ce7f5b51e544a9e68e719934458b::hyper_coin::DexlynUSDC': { symbol: 'dexUSDC',  decimals: 6 },
@@ -51,10 +54,10 @@ module.exports = {
     '0x16aae30a40726dec7737b738ff8c586623d52f861c0ed997994b0498b9a7cacd::SUPD::SUPD':            { symbol: 'SUPD',     decimals: 6 },
     '0xaccc77c23159a80af1fff5aaee9c29d07915836b26a1fd8c0e1bed149f24cabc::stc::STC':              { symbol: 'STC',      decimals: 6 },
     '0xf11aa44964cfa8396f6519b54cb212915477cfb792c6451a5d79dc6df352e908::soup::SOUP':            { symbol: 'SOUP',     decimals: 6 },
+    '0x635f53147391781c93bf3e1c68dcea5e2f7234ec371b0f241d150465606a9007::ROBBIE::ROBBIE':        { symbol: 'ROBBIE',   decimals: 6 },
     '0x8fd1550a61055c1406e04d1a0ddf7049d00c889b59f6823f21ca7d842e1eaf3c::jones::JONES':          { symbol: 'JONES',    decimals: 6 },
     '0x492426412135ce55b9c0e3389cbb62569e7192cd5a15963bf00c96cd9d1c578d::dragon::DRAGON':        { symbol: 'DRAGON',   decimals: 6 },
-    '0x635f53147391781c93bf3e1c68dcea5e2f7234ec371b0f241d150465606a9007::ROBBIE::ROBBIE':        { symbol: 'ROBBIE',   decimals: 6 },
-    // FA tokens (endereço nu — descobertos via get_coin_detail em runtime)
+    // FA tokens
     '0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7': { symbol: 'FA:4b28', decimals: 8 },
     '0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658':  { symbol: 'FA:bb3c', decimals: 8 },
     '0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d':  { symbol: 'FA:80f0', decimals: 8 },
@@ -65,14 +68,5 @@ module.exports = {
     '0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7':  { symbol: 'FA:e583', decimals: 8 },
     '0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964':   { symbol: 'FA:7b64', decimals: 8 },
     '0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8':   { symbol: 'FA:e1af', decimals: 8 },
-    '0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41':  { symbol: 'FA:a387', decimals: 8 },
-    '0x1a290d95d7d2f934bd76f58fa5c3d29612fab9aa9bba00283e67abc26543b00a':  { symbol: 'FA:1a29', decimals: 8 },
-    '0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3':  { symbol: 'FA:459b', decimals: 8 },
-    '0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1':   { symbol: 'FA:9d99', decimals: 8 },
-    '0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52':  { symbol: 'FA:f0ab', decimals: 8 },
-    '0x99f84c4fda663bf3baf3a1b0980386ca084c3e9340a4d3f8713cd54ec85f4cea':  { symbol: 'FA:99f8', decimals: 8 },
-    '0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d':  { symbol: 'FA:e4af', decimals: 8 },
-    '0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae':  { symbol: 'FA:aa92', decimals: 8 },
-    '0x870900b6557795114cb154a747400eb5a683d1cc6c9a1f5a0af318f7cf57bf67':  { symbol: 'FA:8709', decimals: 8 },
-  }
+  },
 };
