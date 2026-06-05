@@ -1,11 +1,17 @@
-// src/dex/executor.js — executa swaps e rotas de arbitragem na Atmos DEX
-// Cada hop é uma TX separada (Atmos não suporta multi-swap atómico em script público)
+// src/dex/executor.js — executa swaps na Atmos DEX
+//
+// Entry function (do ABI atmos_entry-ABI.json):
+//   swap_exact_in_weighted_entry(&signer, pool, token_in, amount_in, token_out, min_amount_out)
+//   swap_exact_in_stable_entry  (&signer, pool, token_in, amount_in, token_out, min_amount_out)
+//
+// Todos os args são Object<X> = address serializado como AccountAddress (32 bytes)
+// min_amount_out = amount_out_esperado × (1 - slippage)
 
 require('dotenv').config();
 const { SupraClient, HexString, SupraAccount, BCS } = require('supra-l1-sdk');
-const { getClient } = require('../utils/client');
-const { logError } = require('../utils/logger');
-const config = require('../config');
+const { getClient }  = require('../utils/client');
+const { logError }   = require('../utils/logger');
+const config         = require('../config');
 
 let _account = null;
 let _sender  = null;
@@ -21,34 +27,40 @@ function getWallet() {
   return { account: _account, sender: _sender };
 }
 
-// Serialização BCS para endereços (AccountAddress 32 bytes)
+// BCS: endereço hex → 32 bytes big-endian
 function serAddr(addr) {
   const hex = (addr.startsWith('0x') ? addr.slice(2) : addr).padStart(64, '0');
-  const s = new BCS.Serializer();
+  const s   = new BCS.Serializer();
   s.serializeFixedBytes(Buffer.from(hex, 'hex'));
   return s.getBytes();
 }
 
-// Serialização BCS para u64
-function serU64(value) {
+// BCS: u64
+function serU64(v) {
   const s = new BCS.Serializer();
-  s.serializeU64(BigInt(value));
+  s.serializeU64(BigInt(v));
   return s.getBytes();
 }
 
-// Executa um único swap na Atmos
+// Executa um único swap
 async function executeSwap({ poolAddress, tokenIn, amountIn, tokenOut, minAmountOut, poolType, seqNum }) {
   const client = await getClient();
   const { account, sender } = getWallet();
   const fn = poolType === 'stable' ? 'swap_exact_in_stable_entry' : 'swap_exact_in_weighted_entry';
 
-  const originalLog = console.log;
-  console.log = () => {};
+  // Suprimir logs internos do SDK
+  const origLog = console.log; console.log = () => {};
   try {
     const rawTx = await client.createRawTxObject(
       new HexString(sender), BigInt(seqNum),
       config.atmosModule, 'atmos_entry', fn, [],
-      [serAddr(poolAddress), serAddr(tokenIn), serU64(amountIn), serAddr(tokenOut), serU64(minAmountOut)],
+      [
+        serAddr(poolAddress),   // pool: Object<Pool>
+        serAddr(tokenIn),       // token_in: Object<Metadata>
+        serU64(amountIn),       // amount_in: u64
+        serAddr(tokenOut),      // token_out: Object<Metadata>
+        serU64(minAmountOut),   // min_amount_out: u64
+      ],
       {
         maxGasAmount:   BigInt(config.execution?.maxGasAmount ?? 15000),
         gasUnitPrice:   BigInt(config.execution?.gasUnitPrice ?? 100),
@@ -62,15 +74,13 @@ async function executeSwap({ poolAddress, tokenIn, amountIn, tokenOut, minAmount
       { enableWaitForTransaction: true, enableTransactionSimulation: true }
     );
   } finally {
-    console.log = originalLog;
+    console.log = origLog;
   }
 }
 
-// Executa uma rota completa (N hops sequenciais)
-// opportunity: { route, optimalAmountRaw, poolsMap }
-// route[i]: { from, to, pool, poolType, fromSymbol, toSymbol, amountInRaw, expectedOutRaw }
+// Executa rota completa (N hops sequenciais)
 async function executeRoute(opportunity, onLog = () => {}) {
-  const client  = await getClient();
+  const client = await getClient();
   const { sender } = getWallet();
   const { route, optimalAmountRaw, poolsMap } = opportunity;
   const slippage = config.execution?.slippageTolerance ?? 0.005;
@@ -91,13 +101,12 @@ async function executeRoute(opportunity, onLog = () => {}) {
       if (amtIn <= 0n) {
         onLog(`{red-fg}❌ Hop ${i+1} amountIn=0 — a abortar.{/}`);
         return txHashes.length > 0
-          ? { txHash: txHashes[0], partial: true, txHashes, success: false }
-          : null;
+          ? { txHash: txHashes[0], partial: true, txHashes, success: false } : null;
       }
 
       const from = hop.fromSymbol || hop.from.slice(0, 8);
       const to   = hop.toSymbol   || hop.to.slice(0, 8);
-      onLog(`{grey-fg}Hop ${i+1}/${route.length}: ${from}→${to} [${poolType}] amt:${Number(amtIn)}{/}`);
+      onLog(`{grey-fg}Hop ${i+1}/${route.length}: {cyan-fg}${from}{/}→{cyan-fg}${to}{/} [${poolType}]{/}`);
 
       let tx;
       try {
@@ -109,31 +118,28 @@ async function executeRoute(opportunity, onLog = () => {}) {
         logError(`executeSwap hop ${i+1}`, e);
         onLog(`{red-fg}❌ Hop ${i+1}: ${e.message.slice(0, 80)}{/}`);
         return txHashes.length > 0
-          ? { txHash: txHashes[0], partial: true, txHashes, success: false }
-          : null;
+          ? { txHash: txHashes[0], partial: true, txHashes, success: false } : null;
       }
 
       if (!tx?.txHash) {
         onLog(`{red-fg}❌ Hop ${i+1} sem txHash — a abortar.{/}`);
         return txHashes.length > 0
-          ? { txHash: txHashes[0], partial: true, txHashes, success: false }
-          : null;
+          ? { txHash: txHashes[0], partial: true, txHashes, success: false } : null;
       }
 
       txHashes.push(tx.txHash);
-      onLog(`{green-fg}✅ Hop ${i+1}: ${tx.txHash.slice(0, 16)}...{/}`);
+      onLog(`{green-fg}✅ Hop ${i+1}: {white-fg}${tx.txHash.slice(0, 18)}...{/}`);
       seqNum++;
     }
 
-    onLog(`{green-fg}✅ Rota completa — ${txHashes.length} hops.{/}`);
+    onLog(`{green-fg}✅ Rota completa — ${txHashes.length} hops executados!{/}`);
     return { txHash: txHashes[0], txHashes, success: true };
 
   } catch (e) {
     logError('executeRoute', e);
-    onLog(`{red-fg}❌ Erro: ${e.message}{/}`);
+    onLog(`{red-fg}❌ Erro fatal: ${e.message}{/}`);
     return txHashes.length > 0
-      ? { txHash: txHashes[0], partial: true, txHashes, success: false }
-      : null;
+      ? { txHash: txHashes[0], partial: true, txHashes, success: false } : null;
   }
 }
 

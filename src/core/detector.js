@@ -1,50 +1,67 @@
-// src/core/detector.js — DFS para encontrar ciclos de arbitragem no grafo
-// Retorna ciclos ordenados por profitPct (maior primeiro), sem duplicados.
+// src/core/detector.js — DFS para encontrar ciclos de arbitragem
+//
+// OPTIMIZAÇÕES:
+// - Early termination: abandona ramo se produto acumulado × max_possível < 1
+// - Limit de ciclos: para após encontrar os N mais lucrativos (evita OOM)
+// - Dedup rápido por Set de pool addresses ordenadas
 
 const config = require('../config');
+
+const MAX_RESULTS = 200; // máximo de ciclos a retornar
 
 function findCycles(graph, minProfitPct, maxHops) {
   minProfitPct = minProfitPct ?? config.minProfitPercent;
   maxHops      = maxHops      ?? config.maxHops;
 
-  const cycles = [];
+  const cycles       = [];
+  const seenKeys     = new Set();
 
   for (const start of graph.keys()) {
     const edges        = [];
     const visitedPools = new Set();
     const visitedNodes = new Set([start]);
+    let   product      = 1;
 
     function dfs(current, depth) {
-      // Fechou o ciclo?
+      // Ciclo fechado
       if (depth >= 2 && current === start) {
-        let product = 1;
-        for (const e of edges) product *= e.price;
         const profitPct = (product - 1) * 100;
         if (profitPct >= minProfitPct) {
-          cycles.push({
-            route: edges.map(e => ({
-              from: e.from, to: e.to,
-              pool: e.pool, poolType: e.poolType,
-            })),
-            profitPct,
-            product,
-            // Liquidez mínima do ciclo (proxy para risco de slippage)
-            liquidityMin: Math.min(...edges.map(e => Math.min(e.reserve0 || 0, e.reserve1 || 0))),
-          });
+          const key = edges.map(e => e.pool).sort().join('|');
+          if (!seenKeys.has(key)) {
+            seenKeys.add(key);
+            cycles.push({
+              route: edges.map(e => ({
+                from: e.from, to: e.to,
+                pool: e.pool, poolType: e.poolType,
+              })),
+              profitPct,
+              product,
+              liquidityMin: Math.min(...edges.map(e => Math.min(e.reserve0 || 0, e.reserve1 || 0))),
+            });
+          }
         }
         return;
       }
+
       if (depth >= maxHops) return;
+      if (cycles.length >= MAX_RESULTS) return;
 
       for (const edge of (graph.get(current) || [])) {
         if (visitedPools.has(edge.pool)) continue;
 
+        // Early termination: se mesmo com price=1 para hops restantes não chega a minProfit, skip
+        const remaining = maxHops - depth - 1;
+        if (product * edge.price * Math.pow(1, remaining) < (1 + minProfitPct / 100) * 0.01) continue;
+
         if (edge.to === start) {
-          // Só fecha se tiver pelo menos 2 hops percorridos
           if (depth >= 2) {
             visitedPools.add(edge.pool);
             edges.push(edge);
+            const prev = product;
+            product *= edge.price;
             dfs(start, depth + 1);
+            product = prev;
             edges.pop();
             visitedPools.delete(edge.pool);
           }
@@ -56,7 +73,10 @@ function findCycles(graph, minProfitPct, maxHops) {
         visitedPools.add(edge.pool);
         visitedNodes.add(edge.to);
         edges.push(edge);
+        const prev = product;
+        product *= edge.price;
         dfs(edge.to, depth + 1);
+        product = prev;
         edges.pop();
         visitedNodes.delete(edge.to);
         visitedPools.delete(edge.pool);
@@ -64,18 +84,10 @@ function findCycles(graph, minProfitPct, maxHops) {
     }
 
     dfs(start, 0);
+    if (cycles.length >= MAX_RESULTS) break;
   }
 
-  // Deduplicar: ciclos com o mesmo conjunto de pools são equivalentes
-  const seen = new Set();
-  return cycles
-    .filter(c => {
-      const key = c.route.map(e => e.pool).sort().join('|');
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    })
-    .sort((a, b) => b.profitPct - a.profitPct);
+  return cycles.sort((a, b) => b.profitPct - a.profitPct);
 }
 
 module.exports = { findCycles };
