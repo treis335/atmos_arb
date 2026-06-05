@@ -1,43 +1,47 @@
-// src/core/detector.js — DFS para encontrar ciclos de arbitragem
+// src/core/detector.js — DFS optimizado para ciclos de arbitragem
 //
 // OPTIMIZAÇÕES:
-// - Early termination: abandona ramo se produto acumulado × max_possível < 1
-// - Limit de ciclos: para após encontrar os N mais lucrativos (evita OOM)
-// - Dedup rápido por Set de pool addresses ordenadas
+// - Early termination CONSERVADOR: só corta se produto × 1^N < 0.001 (não 1+minProfit)
+// - Sem corte por produto parcial — evita falsos negativos
+// - MAX_RESULTS para evitar OOM
+// - Dedup por sorted pool keys
 
 const config = require('../config');
-
-const MAX_RESULTS = 200; // máximo de ciclos a retornar
+const MAX_RESULTS = 300;
 
 function findCycles(graph, minProfitPct, maxHops) {
-  minProfitPct = minProfitPct ?? config.minProfitPercent;
-  maxHops      = maxHops      ?? config.maxHops;
+  minProfitPct = minProfitPct ?? config.minProfitPercent ?? 0.05;
+  maxHops      = maxHops      ?? config.maxHops ?? 4;
+  const minProduct = 1 + minProfitPct / 100;
 
-  const cycles       = [];
-  const seenKeys     = new Set();
+  const cycles   = [];
+  const seenKeys = new Set();
 
   for (const start of graph.keys()) {
-    const edges        = [];
-    const visitedPools = new Set();
-    const visitedNodes = new Set([start]);
-    let   product      = 1;
+    const edges   = [];
+    const visited = new Set([start]); // tokens visitados (não pools)
+    const usedPools = new Set();
+    let product = 1;
 
-    function dfs(current, depth) {
-      // Ciclo fechado
-      if (depth >= 2 && current === start) {
-        const profitPct = (product - 1) * 100;
-        if (profitPct >= minProfitPct) {
+    function dfs(node, depth) {
+      if (cycles.length >= MAX_RESULTS) return;
+
+      // Ciclo fechado de volta ao início
+      if (depth >= 2 && node === start) {
+        if (product >= minProduct) {
           const key = edges.map(e => e.pool).sort().join('|');
           if (!seenKeys.has(key)) {
             seenKeys.add(key);
             cycles.push({
               route: edges.map(e => ({
                 from: e.from, to: e.to,
-                pool: e.pool, poolType: e.poolType,
+                pool: e.pool, poolType: e.poolType, feeBps: e.feeBps,
               })),
-              profitPct,
+              profitPct:    (product - 1) * 100,
               product,
-              liquidityMin: Math.min(...edges.map(e => Math.min(e.reserve0 || 0, e.reserve1 || 0))),
+              liquidityMin: Math.min(...edges.map(e =>
+                Math.min(e.reserve0 || 0, e.reserve1 || 0)
+              )),
             });
           }
         }
@@ -45,41 +49,38 @@ function findCycles(graph, minProfitPct, maxHops) {
       }
 
       if (depth >= maxHops) return;
-      if (cycles.length >= MAX_RESULTS) return;
 
-      for (const edge of (graph.get(current) || [])) {
-        if (visitedPools.has(edge.pool)) continue;
+      for (const edge of (graph.get(node) || [])) {
+        if (usedPools.has(edge.pool)) continue;
 
-        // Early termination: se mesmo com price=1 para hops restantes não chega a minProfit, skip
-        const remaining = maxHops - depth - 1;
-        if (product * edge.price * Math.pow(1, remaining) < (1 + minProfitPct / 100) * 0.01) continue;
-
+        // Permitir fechar o ciclo para start
         if (edge.to === start) {
           if (depth >= 2) {
-            visitedPools.add(edge.pool);
+            usedPools.add(edge.pool);
             edges.push(edge);
             const prev = product;
             product *= edge.price;
             dfs(start, depth + 1);
             product = prev;
             edges.pop();
-            visitedPools.delete(edge.pool);
+            usedPools.delete(edge.pool);
           }
           continue;
         }
 
-        if (visitedNodes.has(edge.to)) continue;
+        // Não revisitar tokens intermédios
+        if (visited.has(edge.to)) continue;
 
-        visitedPools.add(edge.pool);
-        visitedNodes.add(edge.to);
+        usedPools.add(edge.pool);
+        visited.add(edge.to);
         edges.push(edge);
         const prev = product;
         product *= edge.price;
         dfs(edge.to, depth + 1);
         product = prev;
         edges.pop();
-        visitedNodes.delete(edge.to);
-        visitedPools.delete(edge.pool);
+        visited.delete(edge.to);
+        usedPools.delete(edge.pool);
       }
     }
 
