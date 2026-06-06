@@ -123,7 +123,7 @@ screen.key(['a'], () => {
 screen.key(['e'], async () => {
   if (txInProgress || !currentOpps.length) return;
   txInProgress = true;
-  const { executeRoute } = require('../dex/executor');
+  const { executeArbitrage } = require('../dex/executor');
   footerBox.setContent('{yellow-fg}⏳ A executar...{/}'); screen.render();
 
   const opp = currentOpps[0];
@@ -153,7 +153,7 @@ async function maybeAutoExecute(opps, balances) {
 
   const available = Math.max(0, (balances.SUPRA || 0) - cfg.gasReserveSUPRA);
   const viable = opps.filter(o =>
-    o.cycle.path[0] === 'SUPRA' &&
+    (o.cycle.path[0] === '0x1::supra_coin::SupraCoin' || o.cycle.path[0] === 'SUPRA') &&
     o.result.profitPct >= cfg.minProfitPct &&
     o.score >= cfg.minScore &&
     o.optimalAmount <= available
@@ -162,7 +162,7 @@ async function maybeAutoExecute(opps, balances) {
 
   txInProgress = true;
   lastAutoTx   = now;
-  const { executeRoute } = require('../dex/executor');
+  const { executeArbitrage } = require('../dex/executor');
   const opp = viable[0];
   const log = msg => { footerBox.setContent(msg); screen.render(); };
   log(`{yellow-fg}🤖 Auto: ${opp.cycle.path.join('→')} (+${opp.result.profitPct.toFixed(3)}%){/}`);

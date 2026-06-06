@@ -36,14 +36,14 @@ const config = {
 
   // ── Auto-execução ─────────────────────────────────────────────────────────
   autoExecute: {
-    enabled:           false,
-    minProfitPct:      0.35,
-    minScore:          25,
-    gasReserveSUPRA:   0.5,
-    cooldownMs:        6000,
-    slippageTolerance: 0.005,
-    maxGasAmount:      15000,
-    gasUnitPrice:      100,
+    enabled:           false,   // [a] no TUI para ligar/desligar
+    minProfitPct:      0.30,    // % mínimo REAL (após simulate) para executar
+    minScore:          20,      // score mínimo
+    gasReserveSUPRA:   0.5,     // SUPRA reservado para gas (nunca gastar abaixo)
+    cooldownMs:        8000,    // 8s entre execuções automáticas
+    slippageTolerance: 0.005,   // 0.5% slippage por hop
+    maxGasAmount:      15000,   // gas máximo por tx
+    gasUnitPrice:      100,     // gas price em octas
   },
 };
 
