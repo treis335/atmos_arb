@@ -6,8 +6,8 @@ module.exports = {
   atmosModule:   '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
   poolsFile:     'data/pools_relevant.json', // 281 pools com liquidez (não 585)
 
-  pollingMs:     4000,
-  maxConcurrent: 20,
+  pollingMs:     12000, // 12s entre ciclos — dar folga ao RPC
+  maxConcurrent: 5,   // Cloudflare rate limit: max ~5 paralelos
   viewTimeoutMs: 10000,
   viewRetries:   2,
 
