@@ -31,3 +31,4 @@ const config = {
     gasUnitPrice:   100,
   },
 };
+module.exports = config;
