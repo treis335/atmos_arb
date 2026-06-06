@@ -5,3 +5,5 @@
 [2026-06-06T09:11:53.192Z] [executeRoute] Request failed with status code 429
 [2026-06-06T09:26:24.478Z] [executeRoute] Request failed with status code 429
 [2026-06-06T09:57:17.488Z] [tick] fetchWalletBalance is not a function
+[2026-06-06T10:00:23.049Z] [tick] fetchWalletBalance is not a function
+[2026-06-06T10:00:48.343Z] [rejection] initScreen is not a function
