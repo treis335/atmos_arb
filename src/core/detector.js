@@ -1,7 +1,7 @@
 // src/core/detector.js
 const { findOptimalAmount } = require('./optimalSize');
 const config = require('../config');
-const { getSymbol } = require('../config/tokens');
+const { priceHistory } = require('../tracker/priceTracker');
 
 const arbDetector = {
   simulateCycle(cycle, amountIn) {
@@ -11,9 +11,8 @@ const arbDetector = {
       const ps  = edge.pair;
       const out = typeof ps._simulate === 'function'
         ? ps._simulate(edge.direction, amount) : 0;
-      // from/to são endereços FA (para execução)
-      const from = edge.direction === 'AB' ? ps.addrA : ps.addrB;
-      const to   = edge.direction === 'AB' ? ps.addrB : ps.addrA;
+      const from    = edge.direction === 'AB' ? ps.addrA : ps.addrB;
+      const to      = edge.direction === 'AB' ? ps.addrB : ps.addrA;
       const fromSym = edge.direction === 'AB' ? ps.tokenA : ps.tokenB;
       const toSym   = edge.direction === 'AB' ? ps.tokenB : ps.tokenA;
       steps.push({ from, to, fromSym, toSym, amtIn: amount, amtOut: out, dex: ps.dex, pair: ps });
@@ -28,9 +27,9 @@ const arbDetector = {
   scoreOpportunity(cycle, result) {
     const { profit: wP, liquidity: wL, trend: wT } = config.scoreWeights;
     const profitScore    = Math.min(1, result.profitPct / 2);
-    const minLiq         = Math.min(...result.steps.map(s => s.pair.tokenB === s.toSym ? (s.pair.reserveB || 0) : (s.pair.reserveA || 0)));
+    const minLiq         = Math.min(...result.steps.map(s =>
+      s.pair.tokenB === s.toSym ? (s.pair.reserveB || 0) : (s.pair.reserveA || 0)));
     const liquidityScore = Math.min(1, Math.log10(Math.max(1, minLiq)) / 6);
-    const { priceHistory } = require('../tracker/priceTracker');
     let trendAlign = 0, trendCount = 0;
     for (const step of result.steps) {
       const ps = step.pair;
@@ -47,18 +46,12 @@ const arbDetector = {
   analyzeAll(cycles) {
     const results = [];
     for (const cycle of cycles) {
-      // Filtrar ciclos com tokens não mapeados (símbolos com '..')
-      const hasUnknown = cycle.path.some(sym => sym.includes('..'));
-      if (hasUnknown) continue;
-
       const { optimalAmount, optimalProfit } = findOptimalAmount(cycle, config);
       if (optimalProfit <= 0) continue;
-
       const result = this.simulateCycle(cycle, optimalAmount);
       if (result.profitPct < config.minProfitPct) continue;
-      // Cap de segurança: lucros >5% com xy=k local são suspeitos
-      if (result.profitPct > 5) continue;
-
+      // SEM cap de 5% — xy=k local é uma aproximação conservadora
+      // lucros >5% podem ser reais em pools desequilibradas
       const scoring = this.scoreOpportunity(cycle, result);
       results.push({ cycle, result, optimalAmount, ...scoring });
     }
