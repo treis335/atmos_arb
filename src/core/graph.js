@@ -1,40 +1,46 @@
-// src/core/graph.js — constrói o grafo dirigido de tokens a partir das reserves
-// Cada aresta representa um swap possível numa pool, com preço pós-fee.
-
-function buildGraph(reservesData) {
-  // Map<tokenType, Edge[]>
-  const graph = new Map();
-
-  for (const r of reservesData) {
-    const { pool, rawPrice, reserve0, reserve1 } = r;
-    const fee  = 1 - (Number(pool.swapFeeBps) || 30) / 10000;
-    const t0   = pool.token0Type;
-    const t1   = pool.token1Type;
-
-    if (!graph.has(t0)) graph.set(t0, []);
-    if (!graph.has(t1)) graph.set(t1, []);
-
-    // t0 → t1
-    graph.get(t0).push({
-      from: t0, to: t1,
-      price:    rawPrice * fee,
-      pool:     pool.address,
-      poolType: pool.poolType,
-      reserve0, reserve1,          // para liquidityScore
-    });
-
-    // t1 → t0 (preço inverso)
-    graph.get(t1).push({
-      from: t1, to: t0,
-      price:    (1 / rawPrice) * fee,
-      pool:     pool.address,
-      poolType: pool.poolType,
-      reserve0: reserve1,          // flip para o sentido inverso
-      reserve1: reserve0,
-    });
+// src/core/graph.js — grafo de tokens, interface idêntica ao dexlyn_arb_original
+function buildGraph(pairStates) {
+  const graph = {};
+  for (const ps of pairStates) {
+    if (!ps || !ps.tokenA || !ps.tokenB) continue;
+    if (!graph[ps.tokenA]) graph[ps.tokenA] = [];
+    if (!graph[ps.tokenB]) graph[ps.tokenB] = [];
+    graph[ps.tokenA].push({ neighbor: ps.tokenB, pair: ps, direction: 'AB' });
+    graph[ps.tokenB].push({ neighbor: ps.tokenA, pair: ps, direction: 'BA' });
   }
-
   return graph;
 }
 
-module.exports = { buildGraph };
+function findCycles(graph, maxLen = 4) {
+  const cycles = [];
+  const dfs = (start, cur, path, edges, visited) => {
+    if (path.length > 1 && cur === start) {
+      cycles.push({ path: [...path, start], edges: [...edges] });
+      return;
+    }
+    if (path.length >= maxLen) return;
+    for (const edge of (graph[cur] || [])) {
+      if (edge.neighbor === start && path.length > 1) {
+        cycles.push({ path: [...path, start], edges: [...edges, edge] });
+        continue;
+      }
+      if (!visited.has(edge.neighbor)) {
+        visited.add(edge.neighbor);
+        dfs(start, edge.neighbor, [...path, edge.neighbor], [...edges, edge], visited);
+        visited.delete(edge.neighbor);
+      }
+    }
+  };
+  for (const token of Object.keys(graph)) {
+    dfs(token, token, [token], [], new Set([token]));
+  }
+  const seen = new Set();
+  return cycles.filter(c => {
+    const k = c.path.slice(0, -1).sort().join('-');
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+module.exports = { buildGraph, findCycles };

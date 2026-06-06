@@ -1,77 +1,76 @@
-// src/config/tokens.js — registo de tokens conhecidos na Atmos DEX
-// symbol, decimals (como número), type (endereço on-chain completo)
-// Adiciona aqui novos tokens sem tocar em mais nenhum ficheiro.
+// src/config/tokens.js — mapa FA address → ticker para a DEX Atmos
+// Os tokens são Fungible Assets identificados por endereço puro (não ::module::Type)
+// O mapa foi construído a partir dos endereços mais frequentes nas 585 pools.
+// Para adicionar tokens: adiciona uma entrada em FA_MAP com o endereço completo.
 
-const TOKENS = {
-  // ── Tokens principais ────────────────────────────────────────────────────
-  SUPRA:    { type: '0x1::supra_coin::SupraCoin',                                                                                       symbol: 'SUPRA',     decimals: 8 },
-  DEXUSDC:  { type: '0x8f7d16ade319b0fce368ca6cdb98589c4527ce7f5b51e544a9e68e719934458b::hyper_coin::DexlynUSDC',                       symbol: 'dexUSDC',   decimals: 6 },
-  DXLYN:    { type: '0x8f7d16ade319b0fce368ca6cdb98589c4527ce7f5b51e544a9e68e719934458b::hyper_coin::DXLYN',                            symbol: 'DXLYN',     decimals: 6 },
+// ─── Mapa estático (endereços conhecidos) ────────────────────────────────────
+const FA_MAP = {
+  // ── Tokens base ────────────────────────────────────────────────────────────
+  '0x1::supra_coin::SupraCoin':                                                    { symbol: 'SUPRA',    decimals: 8 },
 
-  // ── Memecoins ────────────────────────────────────────────────────────────
-  LUCKY:    { type: '0x4205c82380bff5708cd7c59e0043a45890a457a6cdb60c9191d818958fd7ac26::LUCKY::LUCKY',                                  symbol: 'LUCKY',     decimals: 6 },
-  DAWGZ:    { type: '0xb8e94e7204d8eeb565a653d262ae6f7434a3a452e2aaf624810b33dfa3b64d09::DAWGZ::DAWGZ',                                  symbol: 'DAWGZ',     decimals: 6 },
-  ROBBIE:   { type: '0x635f53147391781c93bf3e1c68dcea5e2f7234ec371b0f241d150465606a9007::ROBBIE::ROBBIE',                                symbol: 'ROBBIE',    decimals: 6 },
-  JOSH:     { type: '0x4742d10cab62d51473bb9b4752046705d40f056abcaa59bcb266078c5945b864::JOSH::JOSH',                                    symbol: 'JOSH',      decimals: 6 },
-  SPIKE:    { type: '0x0fec116479f1fd3cb9732cc768e6061b0e45b178a610b9bc23c2143a6493e794::memecoins::SPIKE',                              symbol: 'SPIKE',     decimals: 3 },
-  LEO:      { type: '0x83e6ebf0e08121734b117daf65677c77185e151114364f7c53bc2366f2c64a12::LEO::LEO',                                      symbol: 'LEO',       decimals: 6 },
-  MUMMY:    { type: '0x729982d3ad6130276c6972880810b7ddabe6d7fb59b5029fa5bed5674ae75a70::MUMMY::MUMMY',                                  symbol: 'MUMMY',     decimals: 6 },
-  MCB:      { type: '0xae282bd0c040c959be1ed067b525fadb38b02a4cfe6fbb27abd9a7e737aaa471::memecoinburners::MCB',                          symbol: 'MCB',       decimals: 6 },
-  PECKY:    { type: '0xe54b95920ef1cf9483705a32eab8526f270bc2f936dfb4112fd6ef971509d85d::Coin::Pecky',                                   symbol: 'PECKY',     decimals: 6 },
-  REPANDA:  { type: '0x901922a0e51b3397eb605be57653bf06c532adc617958dbf142783f6bdb1f535::RPD::RPD',                                      symbol: 'REPANDA',   decimals: 6 },
-  LOWCAPS:  { type: '0x35e70dea5a275dda4bdba9c5903d489891a10712dfbfa2bf04cc009f77026b94::lowCapGems::LOWCAPS',                           symbol: 'LOWCAPS',   decimals: 6 },
-  BABYJOSH: { type: '0x4742d10cab62d51473bb9b4752046705d40f056abcaa59bcb266078c5945b864::BABYJOSH::BABYJOSH',                            symbol: 'BABYJOSH',  decimals: 6 },
-  TSUPRA:   { type: '0x32008172b80cf1d9ed5804eddac608f0c25ac211d90e7aeff44c1993bcf0b863::TSUPRA::TSUPRA',                                symbol: 'tSUPRA',    decimals: 6 },
-  WABBIT:   { type: '0x1cb8ecc17fd3415505c248567290c083b36e595d067d2122643128e81ae46d43::WABBIT::WABBIT',                                symbol: 'WABBIT',    decimals: 6 },
-  NANA:     { type: '0x6253eb8c732079a4eba6fe8a194461b5051d087ad9d35ddf4a8c087e8f7a1d4e::NANA::NANA',                                  symbol: 'NANA',      decimals: 6 },
-  OG:       { type: '0xd0f37da5c7a0104d8cb161e1ac1e101f90b702c18081b76b62f20137bf40fd0b::OG::OG',                                       symbol: 'OG',        decimals: 6 },
-  SBC:      { type: '0xe75d56b0c61d3d82bfaff803af2aacbbf42618c1ec2226ad10ba81e408f1ac8b::SBC::SBC',                                      symbol: 'SBC',       decimals: 6 },
-  SUPDOG:   { type: '0x2f2514cbada3f20f092cbf6aa19ccba08c952002c1d05692154286d55682cdd1::SUPDOG::SUPDOG',                               symbol: 'SUPDOG',    decimals: 6 },
-  SHILLBILL:{ type: '0x030e804570703471b2d1c347250989d31ece73e695f2efff1d19f0daab99e1ca::SHILLBILL::SHILLBILL',                         symbol: 'SHILLBIL',  decimals: 6 },
-  PUMP:     { type: '0xc2896ec7a6ad3ac8a50626db9b832a142647ff065af6b30a089f64627c0c4a2b::pump_coin::PUMP',                              symbol: 'PUMP',      decimals: 6 },
-  FLP:      { type: '0x159790ba3f3ca3b038d9234498ea14390ddcbab13ec96ca17c7396f77da8bf82::FLP::FLP',                                     symbol: 'FLP',       decimals: 6 },
-  SUPD:     { type: '0x16aae30a40726dec7737b738ff8c586623d52f861c0ed997994b0498b9a7cacd::SUPD::SUPD',                                   symbol: 'SUPD',      decimals: 6 },
-  STC:      { type: '0xaccc77c23159a80af1fff5aaee9c29d07915836b26a1fd8c0e1bed149f24cabc::stc::STC',                                     symbol: 'STC',       decimals: 6 },
-  CASH:     { type: '0x9176f70f125199a3e3d5549ce795a8e906eed75901d535ded623802f15ae3637::cdp_multi::CASH',                               symbol: 'CASH',      decimals: 8 },
-  SOUP:     { type: '0xf11aa44964cfa8396f6519b54cb212915477cfb792c6451a5d79dc6df352e908::soup::SOUP',                                   symbol: 'SOUP',      decimals: 6 },
-  JONES:    { type: '0x8fd1550a61055c1406e04d1a0ddf7049d00c889b59f6823f21ca7d842e1eaf3c::jones::JONES',                                 symbol: 'JONES',     decimals: 6 },
-  DRAGON:   { type: '0x492426412135ce55b9c0e3389cbb62569e7192cd5a15963bf00c96cd9d1c578d::dragon::DRAGON',                              symbol: 'DRAGON',    decimals: 6 },
-
-  // ── FA tokens (descobertos via get_coin_detail em runtime) ───────────────
-  'FA:4b28': { type: '0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7', symbol: 'FA:4b28', decimals: 8 },
-  'FA:bb3c': { type: '0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658',  symbol: 'FA:bb3c', decimals: 8 },
-  'FA:80f0': { type: '0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d',  symbol: 'FA:80f0', decimals: 8 },
-  'FA:f90b': { type: '0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d',  symbol: 'FA:f90b', decimals: 8 },
-  'FA:90a8': { type: '0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281',  symbol: 'FA:90a8', decimals: 8 },
-  'FA:7b66': { type: '0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042',   symbol: 'FA:7b66', decimals: 8 },
-  'FA:98e4': { type: '0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6',  symbol: 'FA:98e4', decimals: 8 },
-  'FA:e583': { type: '0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7',  symbol: 'FA:e583', decimals: 8 },
-  'FA:7b64': { type: '0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964',   symbol: 'FA:7b64', decimals: 8 },
-  'FA:e1af': { type: '0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8',   symbol: 'FA:e1af', decimals: 8 },
+  // ── Top FA tokens por frequência nas pools ─────────────────────────────────
+  '0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7':          { symbol: 'LUCKY',    decimals: 6 },
+  '0xbb3c1ca1ef67b1a994f2463978695c7bf890710182f75edef05ad08490be3658':           { symbol: 'JOSH',     decimals: 6 },
+  '0x80f0251b74c76f1c477b9209ade65ffb5cfecd9b259875c3865ad645f6c33a3d':           { symbol: 'DAWGZ',    decimals: 6 },
+  '0xf90b4b9d4a9d87c39fb3140513e52edc3ead5eaddcb9881b02becdeb63c5793d':           { symbol: 'dexUSDC',  decimals: 6 },
+  '0x90a8e901e02ac1539af4a865bbe4a6b96edc27375488803cfbbd6875ec57b281':           { symbol: 'MUMMY',    decimals: 6 },
+  '0x7b66011900be87269647b5cce4902a04d3189982ae677a393b2046e55c92042':            { symbol: 'SPIKE',    decimals: 3 },
+  '0x98e458ccc04ee5a5de8d82857476f820a033bede08f7fbf033390cea937c6ec6':           { symbol: 'LEO',      decimals: 6 },
+  '0xe583ee359a571682c463c33635044712ad720b0fc59be327235abde4eacf98f7':           { symbol: 'MCB',      decimals: 6 },
+  '0x7b6463ca7a54ee37e113c8333db9c0af49de39555ee1cb44837db4c085f8964':            { symbol: 'PECKY',    decimals: 6 },
+  '0xe1afaaed7625f0a500fc42adb440bd999b7249a0c96e48c4a3f11bc30c211d8':            { symbol: 'CASH',     decimals: 8 },
+  '0xa387de3ef742f9bbf00e8d9d3fe6ef2f4fa549036a8d29db8432d50edb463f41':          { symbol: 'REPANDA',  decimals: 6 },
+  '0x1a290d95d7d2f934bd76f58fa5c3d29612fab9aa9bba00283e67abc26543b00a':           { symbol: 'LOWCAPS',  decimals: 6 },
+  '0x459b5670239b5ddf864138012df750d0e5210628e299a48e4d94f75711e82fc3':           { symbol: 'WABBIT',   decimals: 6 },
+  '0x9d998eff3c742a24139590c57d02ff43a4e536a66bb415edabca6979f081bf1':            { symbol: 'TSUPRA',   decimals: 6 },
+  '0xf0ab0c3c9ab3abf0596dee7713d453096b538a76bdf3b69b0bb271558b40ae52':           { symbol: 'BABYJOSH', decimals: 6 },
+  '0x99f84c4fda663bf3baf3a1b0980386ca084c3e9340a4d3f8713cd54ec85f4cea':           { symbol: 'NANA',     decimals: 6 },
+  '0xe4af154ade9551e7f58a23b8f727ae2dca050f1b74582bb518ba361c889d246d':           { symbol: 'OG',       decimals: 6 },
+  '0xaa925a2232144c11dfe855178e1d252a8d0d4f51f5572fc0ec34efa6333952ae':           { symbol: 'SBC',      decimals: 6 },
+  '0x870900b6557795114cb154a747400eb5a683d1cc6c9a1f5a0af318f7cf57bf67':           { symbol: 'SUPDOG',   decimals: 6 },
+  '0xf199782bff16646c43de02fe1ca4244def5ea7abe0796a4f45002795e6f6ca35':           { symbol: 'ROBBIE',   decimals: 6 },
+  '0xcc0891286f5df62496390cda6cd0d769cd480667eed04d918be4f9bf3ae96b1d':           { symbol: 'PUMP',     decimals: 6 },
+  '0xb9a4b9082fd9d6bd04987bc0b4676a1c192b3d06daef7b4387ce4e28f12960eb':           { symbol: 'SHILLBIL', decimals: 6 },
+  '0x1cc2bc27c5134ffcdd80fddcfaa1b9a05f6c03649c9927429f95fc723174c0ae':           { symbol: 'FLP',      decimals: 6 },
+  '0xceff14089bde0d4f512dcd3b6f3df6794346c58115b8d97e043f92ff08cd1fca':           { symbol: 'SUPD',     decimals: 6 },
+  '0x9ffbff160e048e16ed4b9fed27c0b004bfc6b163373793b7f1c4d63b237fe85f':           { symbol: 'STC',      decimals: 6 },
+  '0xd7908e3916c2787239114d6eb634380ff60458f9ee7212e46ac0d37e673be851':           { symbol: 'SOUP',     decimals: 6 },
+  '0x77076e706585f7645c722bc5d7362c0d67100431f585a9973c7a1d26e35e0a64':           { symbol: 'DXLYN',    decimals: 6 },
+  '0xcc084e2c06f8680aecc8a94a4e4e81c027fb9df93c3eaee6d96c8d1ef73d3254':           { symbol: 'JONES',    decimals: 6 },
+  '0x7707d85fc99e1dadb570e9fbd3a6a9e71d5ba0ba258a31fd3fc69b1bf498d644':           { symbol: 'DRAGON',   decimals: 6 },
 };
 
-// Índice reverso: type string → chave do token (para lookup rápido)
-const TYPE_TO_KEY = {};
-for (const [key, info] of Object.entries(TOKENS)) {
-  TYPE_TO_KEY[info.type] = key;
+// Índice inverso para lookup rápido por símbolo
+const SYMBOL_TO_ADDR = {};
+for (const [addr, info] of Object.entries(FA_MAP)) {
+  SYMBOL_TO_ADDR[info.symbol] = addr;
 }
 
-function getByType(type)   { return TOKENS[TYPE_TO_KEY[type]] || null; }
-function getSymbol(type)   { return TOKENS[TYPE_TO_KEY[type]]?.symbol || _shortAddr(type); }
-function getDecimals(type) { return TOKENS[TYPE_TO_KEY[type]]?.decimals || 8; }
+// Runtime registry para tokens descobertos via on-chain
+const _runtime = {};
 
-// Regista token desconhecido descoberto em runtime
-function registerRuntime(type, symbol, decimals = 8) {
-  if (TYPE_TO_KEY[type]) return;
-  const key = symbol || _shortAddr(type);
-  TOKENS[key] = { type, symbol: key, decimals };
-  TYPE_TO_KEY[type] = key;
+function getSymbol(addr) {
+  return FA_MAP[addr]?.symbol || _runtime[addr]?.symbol || _shortAddr(addr);
+}
+
+function getDecimals(addr) {
+  return FA_MAP[addr]?.decimals ?? _runtime[addr]?.decimals ?? 8;
+}
+
+// Regista token descoberto em runtime (via get_fa_details_multi)
+function registerFA(addr, symbol, decimals) {
+  if (FA_MAP[addr]) return; // não sobrescreve o mapa estático
+  _runtime[addr] = { symbol: symbol || _shortAddr(addr), decimals: decimals ?? 8 };
+}
+
+function isKnown(addr) {
+  return !!(FA_MAP[addr] || _runtime[addr]);
 }
 
 function _shortAddr(addr) {
-  return addr.includes('::')
-    ? addr.split('::').pop()
-    : addr.slice(0, 6) + '..' + addr.slice(-4);
+  if (!addr) return '???';
+  const s = addr.startsWith('0x') ? addr.slice(2) : addr;
+  return s.slice(0, 4) + '..' + s.slice(-4);
 }
 
-module.exports = { TOKENS, TYPE_TO_KEY, getByType, getSymbol, getDecimals, registerRuntime };
+module.exports = { FA_MAP, SYMBOL_TO_ADDR, getSymbol, getDecimals, registerFA, isKnown };

@@ -1,81 +1,82 @@
-// src/core/detector.js — DFS para encontrar ciclos de arbitragem no grafo
-// Retorna ciclos ordenados por profitPct (maior primeiro), sem duplicados.
+// src/core/detector.js — detector de arb, baseado no dexlyn_arb_original
+// Usa _simulate de cada par (interface unificada), EMA trend, score multi-factor
 
+const { findOptimalAmount } = require('./optimalSize');
+const { trackPrice } = require('../tracker/priceTracker');
 const config = require('../config');
 
-function findCycles(graph, minProfitPct, maxHops) {
-  minProfitPct = minProfitPct ?? config.minProfitPercent;
-  maxHops      = maxHops      ?? config.maxHops;
-
-  const cycles = [];
-
-  for (const start of graph.keys()) {
-    const edges        = [];
-    const visitedPools = new Set();
-    const visitedNodes = new Set([start]);
-
-    function dfs(current, depth) {
-      // Fechou o ciclo?
-      if (depth >= 2 && current === start) {
-        let product = 1;
-        for (const e of edges) product *= e.price;
-        const profitPct = (product - 1) * 100;
-        if (profitPct >= minProfitPct) {
-          cycles.push({
-            route: edges.map(e => ({
-              from: e.from, to: e.to,
-              pool: e.pool, poolType: e.poolType,
-            })),
-            profitPct,
-            product,
-            // Liquidez mínima do ciclo (proxy para risco de slippage)
-            liquidityMin: Math.min(...edges.map(e => Math.min(e.reserve0 || 0, e.reserve1 || 0))),
-          });
+const arbDetector = {
+  simulateCycle(cycle, amountIn) {
+    let amount = amountIn;
+    const steps = [];
+    for (const edge of cycle.edges) {
+      const ps  = edge.pair;
+      let out = 0;
+      if (typeof ps._simulate === 'function') {
+        out = ps._simulate(edge.direction, amount);
+      } else {
+        // fallback xy=k genérico
+        const { reserveA, reserveB, fee, feeScale } = ps;
+        const rIn  = edge.direction === 'AB' ? reserveA : reserveB;
+        const rOut = edge.direction === 'AB' ? reserveB : reserveA;
+        if (rIn > 0 && rOut > 0 && amount > 0) {
+          const f = 1 - fee / feeScale;
+          out = (amount * f * rOut) / (rIn + amount * f);
         }
-        return;
       }
-      if (depth >= maxHops) return;
-
-      for (const edge of (graph.get(current) || [])) {
-        if (visitedPools.has(edge.pool)) continue;
-
-        if (edge.to === start) {
-          // Só fecha se tiver pelo menos 2 hops percorridos
-          if (depth >= 2) {
-            visitedPools.add(edge.pool);
-            edges.push(edge);
-            dfs(start, depth + 1);
-            edges.pop();
-            visitedPools.delete(edge.pool);
-          }
-          continue;
-        }
-
-        if (visitedNodes.has(edge.to)) continue;
-
-        visitedPools.add(edge.pool);
-        visitedNodes.add(edge.to);
-        edges.push(edge);
-        dfs(edge.to, depth + 1);
-        edges.pop();
-        visitedNodes.delete(edge.to);
-        visitedPools.delete(edge.pool);
-      }
+      const from = edge.direction === 'AB' ? ps.tokenA : ps.tokenB;
+      const to   = edge.direction === 'AB' ? ps.tokenB : ps.tokenA;
+      steps.push({ from, to, amtIn: amount, amtOut: out, dex: ps.dex, pair: ps });
+      if (!out || out <= 0) return { steps, startAmount: amountIn, endAmount: 0, profitAbs: -amountIn, profitPct: -100 };
+      amount = out;
     }
+    const profitAbs = amount - amountIn;
+    const profitPct = (profitAbs / amountIn) * 100;
+    return { steps, startAmount: amountIn, endAmount: amount, profitAbs, profitPct };
+  },
 
-    dfs(start, 0);
-  }
+  scoreOpportunity(cycle, result) {
+    const { profit: wP, liquidity: wL, trend: wT } = config.scoreWeights;
 
-  // Deduplicar: ciclos com o mesmo conjunto de pools são equivalentes
-  const seen = new Set();
-  return cycles
-    .filter(c => {
-      const key = c.route.map(e => e.pool).sort().join('|');
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    })
-    .sort((a, b) => b.profitPct - a.profitPct);
-}
+    const profitScore = Math.min(1, result.profitPct / 2);
 
-module.exports = { findCycles };
+    const minLiquidity = Math.min(...result.steps.map(s => {
+      const ps = s.pair;
+      const res = ps.tokenB === s.to ? (ps.reserveB || 0) : (ps.reserveA || 0);
+      return res;
+    }));
+    const liquidityScore = Math.min(1, Math.log10(Math.max(1, minLiquidity)) / 6);
+
+    let trendAlign = 0, trendCount = 0;
+    for (const step of result.steps) {
+      const ps  = step.pair;
+      const key = `ATMOS_${ps.tokenA}_${ps.tokenB}_${ps.curve || 'w'}`;
+      const h   = require('../tracker/priceTracker').priceHistory[key];
+      if (!h) continue;
+      const isAB = step.from === ps.tokenA;
+      trendAlign += (isAB ? h.ema > 0 : h.ema < 0) ? 1 : -0.5;
+      trendCount++;
+    }
+    const trendScore = trendCount
+      ? Math.max(0, Math.min(1, (trendAlign / trendCount + 0.5) / 1.5))
+      : 0.5;
+
+    const score = Math.round((wP * profitScore + wL * liquidityScore + wT * trendScore) * 100);
+    return { score, profitScore, liquidityScore, trendScore };
+  },
+
+  analyzeAll(cycles) {
+    const results = [];
+    for (const cycle of cycles) {
+      const { optimalAmount, optimalProfit } = findOptimalAmount(cycle, config);
+      if (optimalProfit <= 0) continue;
+      const result = this.simulateCycle(cycle, optimalAmount);
+      if (result.profitPct < config.minProfitPct) continue;
+      const scoring = this.scoreOpportunity(cycle, result);
+      results.push({ cycle, result, optimalAmount, ...scoring });
+    }
+    return results.sort((a, b) => b.score - a.score);
+  },
+};
+
+module.exports = { arbDetector };
