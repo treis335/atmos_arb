@@ -1,34 +1,50 @@
-// src/config/index.js — configuração central (alinhada com dexlyn_arb_original)
+// src/config/index.js — configuração central do bot
 require('dotenv').config();
 
 const config = {
-  rpc:          process.env.RPC_URL || 'https://rpc-mainnet.supra.com',
-  atmosModule:  '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
-  poolsFile:    'data/pools.json',
+  // ── RPC ──────────────────────────────────────────────────────────────────
+  rpc:           process.env.RPC_URL || 'https://rpc-mainnet.supra.com',
+  atmosModule:   '0xa4a4a31116e114bf3c4f4728914e6b43db73279a4421b0768993e07248fe2234',
+  poolsFile:     'data/pools.json',   // 585 pools (todas)
 
-  pollingMs:    3500,
-  maxConcurrent: 12,         // mais parallelismo = mais rápido
-  viewTimeoutMs: 12000,
-  viewRetries:   3,
-  emaAlpha:      0.35,
-  tickHistory:   12,
+  // ── Performance ──────────────────────────────────────────────────────────
+  pollingMs:     4000,
+  maxConcurrent: 15,       // 15 calls paralelos — evita 429 no RPC
+  viewTimeoutMs: 10000,
+  viewRetries:   2,
 
-  minProfitPct:  0.10,       // % mínimo para MOSTRAR
-  minLiquidity:  100,        // reserva mínima por lado (token units)
-  maxHops:       4,
+  // ── EMA / histórico ──────────────────────────────────────────────────────
+  emaAlpha:    0.30,
+  tickHistory: 12,
 
-  optimalSearch: { min: 10, max: 10000, iterations: 20 },
-  scoreWeights:  { profit: 0.60, liquidity: 0.25, trend: 0.15 },
+  // ── Detecção ─────────────────────────────────────────────────────────────
+  minProfitPct: 0.10,  // % mínimo para MOSTRAR
+  minLiquidity: 50,    // reserva mínima em token units (50 tokens cada lado)
+  maxHops:      4,
 
+  // ── Optimal size ─────────────────────────────────────────────────────────
+  // max é limitado dinamicamente a 5% da liquidez da pool (ver optimalSize.js)
+  // para evitar lucros fictícios de xy=k com input > reserva
+  optimalSearch: {
+    min:        1,       // SUPRA mínimo por trade
+    max:        500,     // SUPRA máximo (limitado pela liquidez real da pool)
+    iterations: 20,
+  },
+
+  // ── Score ─────────────────────────────────────────────────────────────────
+  scoreWeights: { profit: 0.60, liquidity: 0.25, trend: 0.15 },
+
+  // ── Auto-execução ─────────────────────────────────────────────────────────
   autoExecute: {
-    enabled:        false,
-    minProfitPct:   0.35,
-    minScore:       25,
-    gasReserveSUPRA: 0.09,
-    cooldownMs:     5000,
+    enabled:           false,
+    minProfitPct:      0.35,
+    minScore:          25,
+    gasReserveSUPRA:   0.5,
+    cooldownMs:        6000,
     slippageTolerance: 0.005,
-    maxGasAmount:   15000,
-    gasUnitPrice:   100,
+    maxGasAmount:      15000,
+    gasUnitPrice:      100,
   },
 };
+
 module.exports = config;

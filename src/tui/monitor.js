@@ -58,7 +58,7 @@ screen.append(headerBox); screen.append(pricesBox);
 screen.append(arbBox);    screen.append(logBox);
 screen.append(footerBox);
 
-const boxes = { screen, headerBox, pricesBox, arbBox, logBox, footerBox, scrollPaused: () => scrollPaused, setScrollPaused: v => { scrollPaused = v; } };
+const boxes = { screen, headerBox, pricesBox, arbBox, logBox, footerBox, scrollPaused: () => scrollPaused, setScrollPaused: v => { scrollPaused = v; }, autoEnabled: () => config.autoExecute.enabled };
 
 // ── State ──────────────────────────────────────────────────────────────────
 let scrollPaused  = false;
@@ -184,8 +184,13 @@ async function maybeAutoExecute(opps, balances) {
 }
 
 // ── Tick ──────────────────────────────────────────────────────────────────
+let _tickCount = 0;
+let _bestEver  = 0;
+let _totalOpps = 0;
+
 async function tick() {
   const t0 = Date.now();
+  _tickCount++;
 
   footerBox.setContent(`{grey-fg}─ A carregar ${allPools.length} pools...{/}`);
   screen.render();
@@ -225,6 +230,28 @@ async function tick() {
   if (config.autoExecute.enabled) {
     maybeAutoExecute(opps, walletBalances).catch(e => logError('autoExecute', e));
   }
+
+  // Actualizar best ever e totais
+  if (opps.length > 0) {
+    _totalOpps += opps.length;
+    if (opps[0].result.profitPct > _bestEver) _bestEver = opps[0].result.profitPct;
+  }
+
+  // Render header com stats reais
+  try {
+    const autoStatus = config.autoExecute.enabled ? '{green-fg}AUTO ON {/}' : '{grey-fg}AUTO OFF{/}';
+    const walletStr = walletBalances?.SUPRA != null ? `{yellow-fg}${walletBalances.SUPRA.toFixed(2)} SUPRA{/}` : '{grey-fg}N/A{/}';
+    const elapsed = Date.now() - t0;
+    headerBox.setContent(
+      `{cyan-fg}{bold}◈  ATMOS ARB BOT v2.0  ·  Atmos DEX  ·  Supra Network{/}{/}
+` +
+      `{grey-fg}─────────────────────────────────────────────────────{/}
+` +
+      ` Ciclo {yellow-fg}#${_tickCount}{/}  |  Pools: {cyan-fg}${pairStates.length}/${allPools.length}{/}  |  Opps: {${opps.length > 0 ? 'green' : 'grey'}-fg}${opps.length}{/}  |  Tick: {grey-fg}${elapsed}ms{/}
+` +
+      ` Best ever: {green-fg}+${_bestEver.toFixed(3)}%{/}  |  ${autoStatus}  |  Wallet: ${walletStr}`
+    );
+  } catch(e) { logError('renderHeader', e); }
 
   try { renderPrices(pairStates, boxes, walletBalances); } catch (e) { logError('renderPrices', e); }
   try { renderArb(opps, boxes); }                          catch (e) { logError('renderArb', e); }

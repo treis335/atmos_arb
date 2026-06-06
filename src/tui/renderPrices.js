@@ -1,56 +1,70 @@
-// src/tui/renderPrices.js — painel MERCADO, baseado no dexlyn_arb_original
+// src/tui/renderPrices.js — painel de pools com info REAL e completa
 const fmtReserve = require('../utils/fmtReserve');
-const { trackPrice, sparkline } = require('../tracker/priceTracker');
 
-function renderPrices(pairStates, boxes, walletBalances = {}) {
-  const { headerBox, pricesBox } = boxes;
-  const active = pairStates.filter(Boolean);
-  const sorted = [...active].sort((a, b) => (a.tokenB + a.tokenA).localeCompare(b.tokenB + b.tokenA));
+function renderPrices(pairStates, boxes, walletBalances) {
+  const box = boxes.pricesBox || boxes;
 
-  let balanceLine = '';
-  if (Object.keys(walletBalances).length > 0) {
-    const parts = Object.entries(walletBalances).map(([sym, amt]) =>
-      `{yellow-fg}${amt >= 1000 ? amt.toFixed(0) : amt.toFixed(4)} ${sym}{/}`
-    );
-    balanceLine = `{grey-fg}  Carteira: {/}${parts.join('  ')}\n`;
+  if (!pairStates || !pairStates.length) {
+    box.setContent('{grey-fg}A aguardar dados das pools...\nVerifica o RPC e a ligação à internet.{/}');
+    return;
   }
 
-  const DEX_COL = 6;
-  headerBox.setContent([
-    '{bright-cyan-fg}{bold}  ◈  ATMOS ARB BOT v2.0  ·  Atmos DEX  ·  Supra{/}',
-    `{grey-fg}  EMA Trend · Opt Size · Score · ${new Date().toLocaleDateString('pt-PT')}{/}`,
-    balanceLine,
-    `{yellow-fg}{bold}  MERCADO — ${sorted.length} pools activas{/}`,
-    '{grey-fg}  ' + 'DEX'.padEnd(DEX_COL) + 'PAR'.padEnd(14) + 'PREÇO'.padEnd(12) + 'TREND'.padEnd(5) + 'Δ%'.padEnd(9) + 'SPARK'.padEnd(14) + 'RES.A'.padEnd(8) + 'RES.B'.padEnd(8) + 'FEE{/}',
-    '{grey-fg}  ' + '─'.repeat(80) + '{/}',
-  ].join('\n'));
+  // Linha de resumo no topo
+  const totalLiq = pairStates.reduce((s, ps) => s + (ps.reserveA || 0) + (ps.reserveB || 0), 0);
+  const supraPrice = pairStates.find(ps => ps.tokenA === 'SUPRA' && ps.tokenB === 'dexUSDC')?.priceAinB
+                  || pairStates.find(ps => ps.tokenA === 'dexUSDC' && ps.tokenB === 'SUPRA')
+                     ?.priceAinB && 1 / pairStates.find(ps => ps.tokenA === 'dexUSDC' && ps.tokenB === 'SUPRA').priceAinB
+                  || 0;
 
-  const L = [];
-  for (const ps of sorted) {
-    try {
-      const key   = `ATMOS_${ps.tokenA}_${ps.tokenB}_${ps.curve || 'w'}`;
-      const price = typeof ps.priceAinB === 'number' ? ps.priceAinB : 0;
-      const t     = trackPrice(key, price);
+  const walletLine = walletBalances?.SUPRA != null
+    ? `{yellow-fg}Wallet: ${walletBalances.SUPRA.toFixed(2)} SUPRA{/}  `
+    : '';
 
-      const dexCol   = `{magenta-fg}Atmos {/}`;
-      const pairRaw  = `${ps.tokenA}/${ps.tokenB}`;
-      const pairStr  = `{bold}${ps.tokenA}{/}/{grey-fg}${ps.tokenB}{/}`;
-      const pairPad  = ' '.repeat(Math.max(0, 14 - pairRaw.length));
-      const priceRaw = price.toFixed(6);
-      const priceStr = `{${t.priceTag}-fg}${priceRaw}{/}`;
-      const pricePad = ' '.repeat(Math.max(0, 12 - priceRaw.length));
-      const trendStr = t.isNew ? '{grey-fg}─    {/}' : `${t.trendStr}   `;
-      const tickStr  = t.isNew ? '{grey-fg}─        {/}' : `{${t.dirTag}-fg}${t.pctStr.padEnd(8)}{/}`;
-      const sp       = sparkline(t.ticks);
-      const rA       = fmtReserve(ps.reserveA || 0).padEnd(8);
-      const rB       = fmtReserve(ps.reserveB || 0).padEnd(8);
-      const feePct   = ((ps.fee / ps.feeScale) * 100).toFixed(2) + '%';
-      const curveTag = ps.curve === 'stable' ? '{magenta-fg}S{/}' : '{grey-fg}W{/}';
+  const header = `${walletLine}{grey-fg}${pairStates.length} pools activas  Liq total: ${fmtReserve(totalLiq)}{/}`;
 
-      L.push(`  ${dexCol}${curveTag} ${pairStr}${pairPad}${priceStr}${pricePad}${trendStr}${tickStr}${sp}  {grey-fg}${rA}${rB}${feePct}{/}`);
-    } catch (_) {}
-  }
-  pricesBox.setContent(L.join('\n'));
+  // Ordenar por liquidez total
+  const sorted = [...pairStates].sort((a, b) => {
+    const liqA = (a.reserveA || 0) + (a.reserveB || 0);
+    const liqB = (b.reserveA || 0) + (b.reserveB || 0);
+    return liqB - liqA;
+  });
+
+  const lines = sorted.slice(0, 80).map(ps => {
+    const symA = (ps.tokenA || '???').padEnd(9);
+    const symB = (ps.tokenB || '???').padEnd(9);
+
+    // Preço formatado
+    const p = ps.priceAinB;
+    let price;
+    if (!p || !isFinite(p) || p <= 0) {
+      price = '       ???';
+    } else if (p < 0.000001) { price = p.toExponential(2).padStart(10); }
+    else if (p < 0.001)      { price = p.toExponential(3).padStart(10); }
+    else if (p < 1000)       { price = p.toFixed(4).padStart(10); }
+    else if (p < 1e7)        { price = p.toFixed(1).padStart(10); }
+    else                     { price = p.toExponential(2).padStart(10); }
+
+    // Liquidez
+    const liqA = fmtReserve(ps.reserveA).padStart(7);
+    const liqB = fmtReserve(ps.reserveB).padStart(7);
+
+    // Fee
+    const fee = (ps.fee / 100).toFixed(2).padStart(4) + '%';
+
+    // Tipo pool
+    const typeTag = ps.curve === 'stable' ? '{magenta-fg}S{/}' : '{blue-fg}W{/}';
+
+    // Indicador liquidez
+    const totalLiq = (ps.reserveA || 0) + (ps.reserveB || 0);
+    const liqTag = totalLiq > 50000 ? '{green-fg}◆◆{/}'
+                 : totalLiq > 5000  ? '{green-fg}◆{/} '
+                 : totalLiq > 500   ? '{yellow-fg}◇{/} '
+                 : '{grey-fg}· {/}';
+
+    return `${liqTag}${typeTag} {cyan-fg}${symA}{/}/{cyan-fg}${symB}{/}{white-fg}${price}{/} {grey-fg}${fee} ${liqA}/${liqB}{/}`;
+  });
+
+  box.setContent(header + '\n' + lines.join('\n'));
 }
 
 module.exports = renderPrices;

@@ -4,14 +4,14 @@
   "description": "Arbitrage bot modular para a DEX Atmos — Supra Network",
   "main": "index.js",
   "scripts": {
-    "start":    "node index.js",
+    "start": "node index.js",
     "discover": "node scripts/discover.js",
-    "filter":   "node scripts/filter_pools.js"
+    "filter": "node scripts/filter_pools.js"
   },
   "dependencies": {
-    "axios":        "^1.6.0",
-    "blessed":      "^0.1.81",
-    "dotenv":       "^16.0.0",
+    "axios": "^1.6.0",
+    "blessed": "^0.1.81",
+    "dotenv": "^16.6.1",
     "supra-l1-sdk": "^5.0.2"
   }
 }
