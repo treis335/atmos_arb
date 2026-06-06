@@ -1,7 +1,4 @@
-// src/config/tokens.js — mapa COMPLETO FA address → ticker para a DEX Atmos
-// IMPORTANTE: todos os tokens têm decimals: 8 (confirmado via pools.json)
-// Fonte: 84 tokens únicos extraídos das 585 pools da Atmos DEX
-
+// src/config/tokens.js — mapa COMPLETO + fallback dinâmico
 const FA_MAP = {
   '0x1::supra_coin::SupraCoin': { symbol: 'SUPRA', decimals: 8 },
   '0x4b28b64c9fa2e5a10f8fb57f1df741f40f58d1eafcfb6ae7c6cfbc68c83d32f7': { symbol: 'LUCKY', decimals: 8 },
@@ -102,13 +99,12 @@ function getSymbol(addr) {
 }
 
 function getDecimals(addr) {
-  // TODOS os tokens Atmos têm 8 decimais — confirmado empiricamente
-  return 8;
+  return 8; // Todos os tokens na Atmos usam 8 decimals
 }
 
-function registerFA(addr, symbol, decimals) {
+function registerFA(addr, symbol, decimals = 8) {
   if (FA_MAP[addr]) return;
-  _runtime[addr] = { symbol: symbol || _shortAddr(addr), decimals: 8 };
+  _runtime[addr] = { symbol: symbol || _shortAddr(addr), decimals };
 }
 
 function isKnown(addr) {
@@ -121,4 +117,31 @@ function _shortAddr(addr) {
   return s.slice(0, 4) + '..' + s.slice(-4);
 }
 
-module.exports = { FA_MAP, SYMBOL_TO_ADDR, getSymbol, getDecimals, registerFA, isKnown };
+// === FUNÇÃO NOVA: Busca símbolo on-chain ===
+async function getFASymbolDynamic(client, metadataAddr) {
+  if (FA_MAP[metadataAddr]) return FA_MAP[metadataAddr];
+
+  try {
+    const res = await client.getAccountResource(metadataAddr, "0x1::fungible_asset::Metadata");
+    const symbol = res?.data?.symbol?.value || res?.data?.symbol || '';
+    const name = res?.data?.name?.value || '';
+    const finalSymbol = symbol || name.substring(0, 12) || _shortAddr(metadataAddr);
+
+    registerFA(metadataAddr, finalSymbol);
+    return { symbol: finalSymbol, decimals: 8 };
+  } catch (e) {
+    const short = _shortAddr(metadataAddr);
+    registerFA(metadataAddr, short);
+    return { symbol: short, decimals: 8 };
+  }
+}
+
+module.exports = { 
+  FA_MAP, 
+  SYMBOL_TO_ADDR, 
+  getSymbol, 
+  getDecimals, 
+  registerFA, 
+  isKnown,
+  getFASymbolDynamic 
+};

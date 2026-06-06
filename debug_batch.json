@@ -1,0 +1,14 @@
+{
+  "error": "Request failed with status code 500",
+  "page": 0
+}
+---
+{
+  "error": "Request failed with status code 500",
+  "page": 0
+}
+---
+{"mode":"get_pools_map","error":"Request failed with status code 500"}
+---
+{"mode":"get_pools_map","error":"Request failed with status code 500","status":500}
+---

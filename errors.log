@@ -1,0 +1,7 @@
+[2026-06-05T20:47:30.471Z] [executeSwap hop 1] Transaction simulation failed. Reason: Status Code: GAS_UNIT_PRICE_BELOW_MIN_BOUND, Type Validation
+[2026-06-05T20:53:16.432Z] [executeSwap hop 1] Transaction simulation failed. Reason: Status Code: GAS_UNIT_PRICE_BELOW_MIN_BOUND, Type Validation
+[2026-06-05T20:58:25.664Z] [executeSwap hop 1] Transaction simulation failed. Reason: Status Code: GAS_UNIT_PRICE_BELOW_MIN_BOUND, Type Validation
+[2026-06-06T09:11:52.135Z] [executeRoute] Request failed with status code 429
+[2026-06-06T09:11:53.192Z] [executeRoute] Request failed with status code 429
+[2026-06-06T09:26:24.478Z] [executeRoute] Request failed with status code 429
+[2026-06-06T09:57:17.488Z] [tick] fetchWalletBalance is not a function
