@@ -1,67 +1,52 @@
-// src/tui/renderArb.js — painel de oportunidades de arbitragem reais
-const fmtReserve = require('../utils/fmtReserve');
+// src/tui/renderArb.js — painel ARB DETECTOR
+function scoreBar(score) {
+  const filled = Math.round(score / 10);
+  const color  = score >= 70 ? 'bright-green' : score >= 40 ? 'yellow' : 'red';
+  return `{${color}-fg}${'█'.repeat(filled)}${'░'.repeat(10 - filled)} ${score}{/}`;
+}
 
 function renderArb(opps, boxes) {
-  const box = boxes.arbBox || boxes;
+  const { arbBox } = boxes;
+  const L = [];
 
-  if (!opps || !opps.length) {
-    box.setContent(
-      '{grey-fg}Nenhuma oportunidade detectada acima do threshold.\n\n' +
-      'Possíveis razões:\n' +
-      '  · Mercado eficiente (spread < 0.10%)\n' +
-      '  · Pools com liquidez baixa filtradas\n' +
-      '  · RPC lento / timeout em muitas pools{/}'
-    );
-    return;
+  if (!opps.length) {
+    L.push('{grey-fg}  Sem oportunidades com tokens conhecidos{/}');
+    L.push('{grey-fg}  (lucros >5% filtrados como falsos positivos){/}');
+  } else {
+    let totalProfit = 0;
+    for (const { cycle, result, optimalAmount, score, profitScore, liquidityScore, trendScore } of opps) {
+      const { profitPct, profitAbs, steps } = result;
+      totalProfit += profitAbs;
+
+      const isHot  = score >= 70, isWarm = score >= 40;
+      const badge  = isHot ? '{green-bg}{black-fg} 🔥 EXEC {/}' : isWarm ? '{yellow-fg} ◈ AVAL  {/}' : '{grey-fg} ○ FRACO {/}';
+      const pc     = isHot ? 'bright-green' : isWarm ? 'yellow' : 'grey';
+      const hops   = steps.length;
+      const inAmt  = optimalAmount.toFixed(2);
+      const first  = steps[0]?.fromSym || cycle.path[0];
+
+      L.push(` ${badge} {${pc}-fg}+${profitPct.toFixed(3)}%  ${hops}h  in:${inAmt}${first}  +${profitAbs.toFixed(4)} ${first}{/}`);
+      L.push(`  ${scoreBar(score)} {grey-fg}P:${(profitScore*100).toFixed(0)}% L:${(liquidityScore*100).toFixed(0)}% T:${(trendScore*100).toFixed(0)}%{/}`);
+      L.push(`  {grey-fg}Rota: {/}${cycle.path.join(' → ')}`);
+      L.push(`  {grey-fg}fee:[${steps.map(s=>((s.pair.fee/s.pair.feeScale)*100).toFixed(2)+'%').join('+')}]  liq:${Math.round(Math.min(...steps.map(s=>Math.min(s.pair.reserveA,s.pair.reserveB)))).toLocaleString()}{/}`);
+
+      for (let i = 0; i < steps.length; i++) {
+        const s  = steps[i];
+        const co = i === steps.length - 1 ? '└' : '├';
+        const cv = s.pair?.curve === 'stable' ? '{magenta-fg}S{/}' : '{grey-fg}W{/}';
+        L.push(
+          `  {grey-fg}${co} ${s.fromSym||s.from.slice(0,6)} → ${s.toSym||s.to.slice(0,6)} {/}[${cv}]` +
+          `  {grey-fg}in:{/}{${pc}-fg}${s.amtIn.toFixed(4)}{/}` +
+          `  {grey-fg}out:{/}{${pc}-fg}${s.amtOut.toFixed(4)}{/}`
+        );
+      }
+      L.push('{grey-fg}  ' + '─'.repeat(44) + '{/}');
+    }
+    if (totalProfit > 0) L.unshift(`{yellow-fg}{bold}  💰 Total estimado: ${totalProfit.toFixed(4)} SUPRA{/}`, '');
   }
 
-  const minExec = 0.35;
-  const lines   = [];
-
-  opps.slice(0, 30).forEach((opp, i) => {
-    const { result, optimalAmount, score } = opp;
-    const pct   = result.profitPct.toFixed(3);
-    const pabs  = result.profitAbs >= 0.0001 ? '+' + result.profitAbs.toFixed(4) + ' SUPRA' : '+' + (result.profitAbs * 1e8).toFixed(0) + ' raw';
-    const color = result.profitPct >= minExec ? 'green'
-                : result.profitPct > 0.10     ? 'yellow'
-                : 'grey';
-    const isAuto = boxes.autoEnabled?.();
-    const badge = result.profitPct >= minExec
-      ? (isAuto ? '{green-fg}▶EXEC{/} ' : '{yellow-fg}▶PRNT{/} ')
-      : '      ';
-
-    // Caminho completo
-    const path = result.steps.map((s, j) => {
-      const sym = j === 0 ? s.from : s.to;
-      return `{white-fg}${sym}{/}`;
-    }).join('{grey-fg}→{/}');
-
-    // Fees e pools do caminho
-    const feeStr = result.steps.map(s => {
-      const fee = s.pair?.fee ?? 30;
-      return (fee / 100).toFixed(2) + '%';
-    }).join('+');
-
-    // Liquidez mínima ao longo da rota
-    const minLiq = Math.min(...result.steps.map(s => {
-      const ps = s.pair;
-      if (!ps) return 0;
-      return s.from === ps.tokenA ? (ps.reserveA || 0) : (ps.reserveB || 0);
-    }));
-
-    const nHops = result.steps.length;
-    const amt   = optimalAmount.toFixed(2);
-
-    lines.push(
-      `${badge}{${color}-fg}${String(i+1).padStart(2)}. +${pct.padStart(7)}%{/}  ` +
-      `{white-fg}${nHops}h  in:${amt}S  ${pabs}{/}\n` +
-      `     ${path}\n` +
-      `     {grey-fg}fee:[${feeStr}]  liq:${fmtReserve(minLiq)}  score:${score}{/}`
-    );
-  });
-
-  box.setContent(lines.join('\n'));
-  if (!boxes.scrollPaused?.()) box.setScrollPerc(0);
+  arbBox.setContent(L.join('\n'));
+  if (!boxes.scrollPaused()) arbBox.scrollTo(0);
 }
 
 module.exports = renderArb;

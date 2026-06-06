@@ -1,10 +1,7 @@
-// src/core/detector.js — detector de arb, baseado no dexlyn_arb_original
-// Usa _simulate de cada par (interface unificada), EMA trend, score multi-factor
-
+// src/core/detector.js
 const { findOptimalAmount } = require('./optimalSize');
-const { trackPrice } = require('../tracker/priceTracker');
 const config = require('../config');
-const MAX_RESULTS = 300;
+const { getSymbol } = require('../config/tokens');
 
 const arbDetector = {
   simulateCycle(cycle, amountIn) {
@@ -12,22 +9,14 @@ const arbDetector = {
     const steps = [];
     for (const edge of cycle.edges) {
       const ps  = edge.pair;
-      let out = 0;
-      if (typeof ps._simulate === 'function') {
-        out = ps._simulate(edge.direction, amount);
-      } else {
-        // fallback xy=k genérico
-        const { reserveA, reserveB, fee, feeScale } = ps;
-        const rIn  = edge.direction === 'AB' ? reserveA : reserveB;
-        const rOut = edge.direction === 'AB' ? reserveB : reserveA;
-        if (rIn > 0 && rOut > 0 && amount > 0) {
-          const f = 1 - fee / feeScale;
-          out = (amount * f * rOut) / (rIn + amount * f);
-        }
-      }
-      const from = edge.direction === 'AB' ? ps.tokenA : ps.tokenB;
-      const to   = edge.direction === 'AB' ? ps.tokenB : ps.tokenA;
-      steps.push({ from, to, amtIn: amount, amtOut: out, dex: ps.dex, pair: ps });
+      const out = typeof ps._simulate === 'function'
+        ? ps._simulate(edge.direction, amount) : 0;
+      // from/to são endereços FA (para execução)
+      const from = edge.direction === 'AB' ? ps.addrA : ps.addrB;
+      const to   = edge.direction === 'AB' ? ps.addrB : ps.addrA;
+      const fromSym = edge.direction === 'AB' ? ps.tokenA : ps.tokenB;
+      const toSym   = edge.direction === 'AB' ? ps.tokenB : ps.tokenA;
+      steps.push({ from, to, fromSym, toSym, amtIn: amount, amtOut: out, dex: ps.dex, pair: ps });
       if (!out || out <= 0) return { steps, startAmount: amountIn, endAmount: 0, profitAbs: -amountIn, profitPct: -100 };
       amount = out;
     }
@@ -38,30 +27,19 @@ const arbDetector = {
 
   scoreOpportunity(cycle, result) {
     const { profit: wP, liquidity: wL, trend: wT } = config.scoreWeights;
-
-    const profitScore = Math.min(1, result.profitPct / 2);
-
-    const minLiquidity = Math.min(...result.steps.map(s => {
-      const ps = s.pair;
-      const res = ps.tokenB === s.to ? (ps.reserveB || 0) : (ps.reserveA || 0);
-      return res;
-    }));
-    const liquidityScore = Math.min(1, Math.log10(Math.max(1, minLiquidity)) / 6);
-
+    const profitScore    = Math.min(1, result.profitPct / 2);
+    const minLiq         = Math.min(...result.steps.map(s => s.pair.tokenB === s.toSym ? (s.pair.reserveB || 0) : (s.pair.reserveA || 0)));
+    const liquidityScore = Math.min(1, Math.log10(Math.max(1, minLiq)) / 6);
+    const { priceHistory } = require('../tracker/priceTracker');
     let trendAlign = 0, trendCount = 0;
     for (const step of result.steps) {
-      const ps  = step.pair;
-      const key = `ATMOS_${ps.tokenA}_${ps.tokenB}_${ps.curve || 'w'}`;
-      const h   = require('../tracker/priceTracker').priceHistory[key];
+      const ps = step.pair;
+      const h  = priceHistory[`ATMOS_${ps.tokenA}_${ps.tokenB}_${ps.curve||'w'}`];
       if (!h) continue;
-      const isAB = step.from === ps.tokenA;
-      trendAlign += (isAB ? h.ema > 0 : h.ema < 0) ? 1 : -0.5;
+      trendAlign += (step.from === ps.addrA ? h.ema > 0 : h.ema < 0) ? 1 : -0.5;
       trendCount++;
     }
-    const trendScore = trendCount
-      ? Math.max(0, Math.min(1, (trendAlign / trendCount + 0.5) / 1.5))
-      : 0.5;
-
+    const trendScore = trendCount ? Math.max(0, Math.min(1, (trendAlign / trendCount + 0.5) / 1.5)) : 0.5;
     const score = Math.round((wP * profitScore + wL * liquidityScore + wT * trendScore) * 100);
     return { score, profitScore, liquidityScore, trendScore };
   },
@@ -69,10 +47,18 @@ const arbDetector = {
   analyzeAll(cycles) {
     const results = [];
     for (const cycle of cycles) {
+      // Filtrar ciclos com tokens não mapeados (símbolos com '..')
+      const hasUnknown = cycle.path.some(sym => sym.includes('..'));
+      if (hasUnknown) continue;
+
       const { optimalAmount, optimalProfit } = findOptimalAmount(cycle, config);
       if (optimalProfit <= 0) continue;
+
       const result = this.simulateCycle(cycle, optimalAmount);
       if (result.profitPct < config.minProfitPct) continue;
+      // Cap de segurança: lucros >5% com xy=k local são suspeitos
+      if (result.profitPct > 5) continue;
+
       const scoring = this.scoreOpportunity(cycle, result);
       results.push({ cycle, result, optimalAmount, ...scoring });
     }
