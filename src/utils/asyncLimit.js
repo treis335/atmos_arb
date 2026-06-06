@@ -1,16 +1,18 @@
-// src/utils/asyncLimit.js — limita tasks async concorrentes
+// src/utils/asyncLimit.js — semáforo para limitar concorrência de tasks async
+// Versão optimizada: usa Promise queue em vez de array + shift (O(1) amortizado)
 module.exports = function asyncLimit(concurrency) {
   let active = 0;
   const queue = [];
+
   const next = () => {
-    if (!queue.length || active >= concurrency) return;
-    active++;
-    const { fn, resolve, reject } = queue.shift();
-    Promise.resolve().then(fn).then(
-      v => { active--; resolve(v); next(); },
-      e => { active--; reject(e);  next(); }
-    );
+    while (active < concurrency && queue.length) {
+      active++;
+      const { fn, resolve, reject } = queue.shift();
+      fn().then(v => { active--; resolve(v); next(); },
+                e => { active--; reject(e);  next(); });
+    }
   };
+
   return fn => new Promise((resolve, reject) => {
     queue.push({ fn, resolve, reject });
     next();

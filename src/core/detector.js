@@ -4,6 +4,7 @@
 const { findOptimalAmount } = require('./optimalSize');
 const { trackPrice } = require('../tracker/priceTracker');
 const config = require('../config');
+const MAX_RESULTS = 300;
 
 const arbDetector = {
   simulateCycle(cycle, amountIn) {
